@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio — Ajouter un projet</title>
+  </head>
+  <body>
+    <header>
+      <h1>Mon Portfolio</h1>
+      <nav>
+        <a href="lister-projets.html">Projets</a> |
+        <a href="ajouter-projet.html">Ajouter un projet</a>
+      </nav>
+    </header>
+
+    <main>
+      <h2>Ajouter un nouveau projet</h2>
+
+      <form action="#" method="POST" enctype="multipart/form-data">
+        <!-- ── LIBELLÉ ── -->
+        <div>
+          <label for="libelle">Libellé du projet *</label>
+          <input
+            type="text"
+            id="libelle"
+            name="libelle"
+            placeholder="Ex : Application E-commerce"
+            required
+            maxlength="100"
+          />
+        </div>
+
+        <!-- ── DESCRIPTION ── -->
+        <div>
+          <label for="description">Description *</label>
+          <textarea
+            id="description"
+            name="description"
+            rows="6"
+            placeholder="Décrivez votre projet, ses objectifs et ses fonctionnalités..."
+            required
+          ></textarea>
+        </div>
+
+        <!-- ── IMAGE ── -->
+        <div>
+          <label for="image">Image du projet</label>
+          <input
+            type="file"
+            id="image"
+            name="image"
+            accept="image/png, image/jpeg, image/webp"
+          />
+        </div>
+
+        <!-- ── CATÉGORIE ── -->
+        <div>
+          <label for="categorie">Catégorie</label>
+          <select id="categorie" name="categorie">
+            <option value="">-- Sélectionner --</option>
+            <option value="web">Application Web</option>
+            <option value="mobile">Application Mobile</option>
+            <option value="desktop">Application Desktop</option>
+            <option value="api">API / Back-End</option>
+            <option value="autre">Autre</option>
+          </select>
+        </div>
+
+        <!-- ── TECHNOLOGIES ── -->
+        <fieldset>
+          <legend>Technologies utilisées</legend>
+
+          <label>
+            <input type="checkbox" name="technologies" value="HTML5" />
+            HTML5
+          </label>
+          <label>
+            <input type="checkbox" name="technologies" value="CSS3" />
+            CSS3
+          </label>
+          <label>
+            <input type="checkbox" name="technologies" value="JavaScript" />
+            JavaScript
+          </label>
+          <label>
+            <input type="checkbox" name="technologies" value="React" />
+            React
+          </label>
+          <label>
+            <input type="checkbox" name="technologies" value="Node.js" />
+            Node.js
+          </label>
+          <label>
+            <input type="checkbox" name="technologies" value="PHP" />
+            PHP
+          </label>
+          <label>
+            <input type="checkbox" name="technologies" value="MySQL" />
+            MySQL
+          </label>
+          <label>
+            <input type="checkbox" name="technologies" value="MongoDB" />
+            MongoDB
+          </label>
+
+          <!-- Autre technologie saisie manuellement -->
+          <div>
+            <label for="autre-tech">Autre(s) :</label>
+            <input
+              type="text"
+              id="autre-tech"
+              name="autre-tech"
+              placeholder="Ex : Vue.js, Django, Laravel..."
+            />
+          </div>
+        </fieldset>
+
+        <!-- ── DATE ── -->
+        <div>
+          <label for="date">Date de réalisation</label>
+          <input type="date" id="date" name="date" />
+        </div>
+
+        <!-- ── LIEN DÉMO ── -->
+        <div>
+          <label for="lien">Lien de démo (URL)</label>
+          <input
+            type="url"
+            id="lien"
+            name="lien"
+            placeholder="https://mon-projet.vercel.app"
+          />
+        </div>
+
+        <!-- ── BOUTONS ── -->
+        <div>
+          <button type="submit">Ajouter le projet</button>
+          <button type="reset">Réinitialiser</button>
+          <a href="lister-projets.html">Annuler</a>
+        </div>
+      </form>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Mon Portfolio</p>
+    </footer>
+  </body>
+</html>

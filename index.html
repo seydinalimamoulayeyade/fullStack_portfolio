@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio — Accueil</title>
+    <link rel="stylesheet" href="styles/common.css" />
+    <link rel="stylesheet" href="styles/index.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Mon Portfolio</h1>
+      <nav>
+        <a href="index.html">Accueil</a> |
+        <a href="lister-projets.html">Projets</a> |
+        <a href="ajouter-projet.html">Ajouter un projet</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- ══════════════════════════════════ -->
+      <!-- SECTION HERO / PRESENTATION        -->
+      <!-- ══════════════════════════════════ -->
+      <section class="hero">
+        <h1>Bienvenue sur Mon Portfolio</h1>
+        <p>Découvrez mes projets et mes réalisations</p>
+        <a href="lister-projets.html" class="cta-button"
+          >Voir tous les projets →</a
+        >
+      </section>
+
+      <!-- ══════════════════════════════════ -->
+      <!-- SECTION PROJETS EN VEDETTE         -->
+      <!-- ══════════════════════════════════ -->
+      <section class="featured-projects">
+        <h2>Projets en vedette</h2>
+
+        <div class="projects-grid">
+          <!-- Projet 1 -->
+          <article class="project-card">
+            <img
+              src="images/projet1.jpg"
+              alt="Application E-commerce"
+              width="300"
+              height="200"
+            />
+            <div class="project-card-content">
+              <h3>Application E-commerce</h3>
+              <p>
+                Une plateforme complète de commerce électronique avec panier et
+                système de paiement intégré.
+              </p>
+              <a href="detailler-projet.html?id=1">Voir le détail →</a>
+            </div>
+          </article>
+
+          <!-- Projet 2 -->
+          <article class="project-card">
+            <img
+              src="images/projet2.jpg"
+              alt="Gestionnaire de tâches"
+              width="300"
+              height="200"
+            />
+            <div class="project-card-content">
+              <h3>Gestionnaire de Tâches</h3>
+              <p>
+                Une application web pour gérer vos tâches quotidiennes avec
+                synchronisation en temps réel.
+              </p>
+              <a href="detailler-projet.html?id=2">Voir le détail →</a>
+            </div>
+          </article>
+
+          <!-- Projet 3 -->
+          <article class="project-card">
+            <img
+              src="images/projet3.jpg"
+              alt="Blog Personnel"
+              width="300"
+              height="200"
+            />
+            <div class="project-card-content">
+              <h3>Blog Personnel</h3>
+              <p>
+                Un blog moderne avec système de commentaires et partage sur les
+                réseaux sociaux.
+              </p>
+              <a href="detailler-projet.html?id=3">Voir le détail →</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="section-separator">
+          <a href="lister-projets.html">Voir tous les projets</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Mon Portfolio. Tous droits réservés.</p>
+    </footer>
+  </body>
+</html>

@@ -3,74 +3,74 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio — Liste des projets</title>
-    <link rel="stylesheet" href="styles/common.css" />
-    <link rel="stylesheet" href="styles/liste-projet.css" />
+    <meta
+      name="description"
+      content="Tous les projets de Seydina Limamou Laye Yade — Développeur Full Stack."
+    />
+    <title>Projets — Seydina Limamou Laye Yade</title>
+
+    <!-- Tailwind CDN Play -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: { DEFAULT: "#1a1a2e", light: "#16213e" },
+              accent: { DEFAULT: "#e94560", hover: "#c73652" },
+              surface: { DEFAULT: "#0f3460", light: "#1a4a8a" },
+              muted: "#94a3b8",
+            },
+            fontFamily: {
+              sans: ["Inter", "system-ui", "sans-serif"],
+              mono: ["JetBrains Mono", "monospace"],
+            },
+          },
+        },
+      };
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <style type="text/tailwindcss">
+      @layer base {
+        html {
+          scroll-behavior: smooth;
+        }
+        body {
+          @apply bg-primary text-slate-200 font-sans antialiased;
+        }
+      }
+      @layer components {
+        .nav-link {
+          @apply text-slate-300 hover:text-accent transition-colors duration-200 text-sm font-medium;
+        }
+        .nav-link-active {
+          @apply text-accent text-sm font-medium;
+        }
+        .btn-primary {
+          @apply inline-flex items-center gap-2 bg-accent hover:bg-accent-hover text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-colors duration-200;
+        }
+        .btn-outline {
+          @apply inline-flex items-center gap-2 border border-slate-600 hover:border-accent text-slate-300 hover:text-accent text-sm font-medium px-5 py-2.5 rounded-lg transition-colors duration-200;
+        }
+        .card-project {
+          @apply bg-surface bg-opacity-40 border border-slate-700 hover:border-accent rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-1;
+        }
+        .badge-tech {
+          @apply inline-block text-xs font-mono bg-primary bg-opacity-80 border border-slate-700 text-slate-300 px-2.5 py-1 rounded-md;
+        }
+        .section-title {
+          @apply text-2xl font-bold text-white mb-1;
+        }
+        .section-subtitle {
+          @apply text-slate-400 text-sm mb-8;
+        }
+      }
+    </style>
   </head>
-  <body>
-    <header>
-      <h1>Mon Portfolio</h1>
-      <nav>
-        <a href="lister-projets.html">Projets</a> |
-        <a href="ajouter-projet.html">Ajouter un projet</a>
-      </nav>
-    </header>
-
-    <main>
-      <h2>Tous les projets</h2>
-
-      <!-- ─── Projet 1 ─── -->
-      <article>
-        <figure>
-          <img
-            src="images/projet1.jpg"
-            alt="Capture du projet Application E-commerce"
-            width="300"
-            height="200"
-          />
-        </figure>
-        <h3>
-          <!-- Ancre qui cible detailler-projet.html -->
-          <a href="detailler-projet.html?id=1"> Application E-commerce </a>
-        </h3>
-        <button type="button">Supprimer</button>
-      </article>
-
-      <!-- ─── Projet 2 ─── -->
-      <article>
-        <figure>
-          <img
-            src="images/projet2.jpg"
-            alt="Capture du projet Gestionnaire de tâches"
-            width="300"
-            height="200"
-          />
-        </figure>
-        <h3>
-          <a href="detailler-projet.html?id=2"> Gestionnaire de Tâches </a>
-        </h3>
-        <button type="button">Supprimer</button>
-      </article>
-
-      <!-- ─── Projet 3 ─── -->
-      <article>
-        <figure>
-          <img
-            src="images/projet3.jpg"
-            alt="Capture du projet Blog Personnel"
-            width="300"
-            height="200"
-          />
-        </figure>
-        <h3>
-          <a href="detailler-projet.html?id=3"> Blog Personnel </a>
-        </h3>
-        <button type="button">Supprimer</button>
-      </article>
-    </main>
-
-    <footer>
-      <p>&copy; 2025 Mon Portfolio</p>
-    </footer>
-  </body>
 </html>

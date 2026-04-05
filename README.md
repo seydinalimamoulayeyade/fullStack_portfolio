@@ -10,7 +10,7 @@
 > Construit avec **HTML5 pur + TailwindCSS** — sans framework JS, sans build system.  
 > Déployé sur **GitHub Pages**.
 
-**🔗 [Voir le portfolio en ligne →](https://seydinalimamoulayeyade.github.io/fullStack_portfolio/)**
+<!-- **🔗 [Voir le portfolio en ligne →](https://seydinalimamoulayeyade.github.io/fullStack_portfolio/)**
 
 ---
 
@@ -48,7 +48,7 @@
 | JetBrains Mono | Police monospace (badges, code)  | —        |
 | GitHub Pages   | Hébergement statique             | —        |
 
-> **Pourquoi Tailwind CDN Play ?**  
+> **Pourquoi Tailwind CDN Play ?**
 > Pour un site statique déployé sur GitHub Pages sans pipeline de build,
 > le CDN Play de Tailwind est la solution officielle recommandée. Il compile
 > les classes en temps réel dans le navigateur — aucune dépendance npm requise.
@@ -209,4 +209,4 @@ Ce projet est sous licence **MIT** — libre de s'en inspirer avec attribution.
 
 <div align="center">
   <sub>Fait avec ❤️ à Dakar · <strong>Seydina Limamou Laye Yade</strong></sub>
-</div>
+</div> -->

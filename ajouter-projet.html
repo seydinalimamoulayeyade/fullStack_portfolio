@@ -3,149 +3,1093 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio — Ajouter un projet</title>
-    <link rel="stylesheet" href="styles/common.css" />
-    <link rel="stylesheet" href="styles/ajouter-projet.css" />
+    <!-- Pas de meta description : page admin, non indexée -->
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Admin — Ajouter un projet · SLLY</title>
+
+    <!-- Tailwind CDN Play -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: { DEFAULT: "#1a1a2e", light: "#16213e" },
+              accent: { DEFAULT: "#e94560", hover: "#c73652" },
+              surface: { DEFAULT: "#0f3460", light: "#1a4a8a" },
+              muted: "#94a3b8",
+            },
+            fontFamily: {
+              sans: ["Inter", "system-ui", "sans-serif"],
+              mono: ["JetBrains Mono", "monospace"],
+            },
+          },
+        },
+      };
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <style type="text/tailwindcss">
+      @layer base {
+        html {
+          scroll-behavior: smooth;
+        }
+        body {
+          @apply bg-primary text-slate-200 font-sans antialiased;
+        }
+      }
+      @layer components {
+        /* ── Navigation ── */
+        .nav-link {
+          @apply text-slate-300 hover:text-accent transition-colors duration-200 text-sm font-medium;
+        }
+        .btn-primary {
+          @apply inline-flex items-center gap-2 bg-accent hover:bg-accent-hover text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-colors duration-200;
+        }
+        .btn-outline {
+          @apply inline-flex items-center gap-2 border border-slate-600 hover:border-accent text-slate-300 hover:text-accent text-sm font-medium px-5 py-2.5 rounded-lg transition-colors duration-200;
+        }
+        .btn-ghost {
+          @apply inline-flex items-center gap-2 text-slate-400 hover:text-accent text-sm font-medium transition-colors duration-200;
+        }
+
+        /* ── Formulaire ── */
+        .form-section {
+          @apply bg-surface bg-opacity-30 border border-slate-700 rounded-2xl p-6;
+        }
+        .form-section-title {
+          @apply text-white font-semibold text-sm flex items-center gap-2 mb-5 pb-4 border-b border-slate-700;
+        }
+        .form-section-icon {
+          @apply w-7 h-7 rounded-lg bg-accent bg-opacity-20 flex items-center justify-center flex-shrink-0;
+        }
+
+        .field-label {
+          @apply block text-slate-300 text-xs font-semibold uppercase tracking-wider mb-2;
+        }
+        .field-required {
+          @apply text-accent ml-1;
+        }
+        .field-hint {
+          @apply block text-slate-500 text-xs mt-1.5 leading-relaxed;
+        }
+
+        .input-text {
+          @apply w-full bg-primary border border-slate-700 text-slate-200 text-sm placeholder-slate-600
+               rounded-lg px-4 py-2.5
+               focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent
+               transition-colors duration-200;
+        }
+        .input-text:hover {
+          @apply border-slate-500;
+        }
+
+        .input-select {
+          @apply w-full bg-primary border border-slate-700 text-slate-200 text-sm
+               rounded-lg px-4 py-2.5
+               focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent
+               transition-colors duration-200 cursor-pointer;
+        }
+
+        .input-textarea {
+          @apply w-full bg-primary border border-slate-700 text-slate-200 text-sm placeholder-slate-600
+               rounded-lg px-4 py-3 resize-none
+               focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent
+               transition-colors duration-200 leading-relaxed;
+        }
+
+        /* Checkbox technos */
+        .tech-checkbox {
+          @apply flex items-center gap-3 bg-primary border border-slate-700 rounded-lg px-3.5 py-2.5
+               cursor-pointer transition-all duration-200
+               hover:border-slate-500 has-[:checked]:border-accent has-[:checked]:bg-accent has-[:checked]:bg-opacity-10;
+        }
+        .tech-checkbox input[type="checkbox"] {
+          @apply w-3.5 h-3.5 accent-[#e94560] cursor-pointer flex-shrink-0;
+        }
+        .tech-checkbox span {
+          @apply text-xs font-mono text-slate-300 select-none;
+        }
+      }
+    </style>
   </head>
-  <body>
-    <header>
-      <h1>Mon Portfolio</h1>
-      <nav>
-        <a href="lister-projets.html">Projets</a> |
-        <a href="ajouter-projet.html">Ajouter un projet</a>
+
+  <body class="min-h-screen flex flex-col">
+    <!-- ═══════════════════════════════════════════════
+       BARRE ADMIN — distincte de la nav publique
+  ════════════════════════════════════════════════ -->
+    <div class="bg-slate-900 border-b border-slate-800 px-6 py-2">
+      <div class="max-w-4xl mx-auto flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <!-- Icône cadenas -->
+          <svg
+            class="w-3.5 h-3.5 text-amber-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+            />
+          </svg>
+          <span
+            class="text-amber-400 text-xs font-medium font-mono tracking-wide"
+          >
+            Zone administration
+          </span>
+          <span class="text-slate-600 text-xs">·</span>
+          <span class="text-slate-500 text-xs">Page non publique</span>
+        </div>
+        <a
+          href="lister-projets.html"
+          class="flex items-center gap-1.5 text-slate-500 hover:text-slate-300 text-xs transition-colors"
+        >
+          <svg
+            class="w-3 h-3"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+            />
+          </svg>
+          Voir le portfolio
+        </a>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════
+       NAVIGATION SIMPLIFIÉE (admin)
+  ════════════════════════════════════════════════ -->
+    <nav class="bg-primary border-b border-slate-800">
+      <div
+        class="max-w-4xl mx-auto px-6 h-14 flex items-center justify-between"
+      >
+        <a
+          href="index.html"
+          class="font-mono text-accent font-medium text-sm tracking-wider"
+        >
+          &lt;SLLY /&gt;
+        </a>
+        <div class="flex items-center gap-2">
+          <span class="text-slate-600 text-xs font-mono">admin</span>
+          <span class="text-slate-700">/</span>
+          <span class="text-slate-400 text-xs font-mono">ajouter-projet</span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ═══════════════════════════════════════════════
+       EN-TÊTE DE PAGE
+  ════════════════════════════════════════════════ -->
+    <header class="max-w-4xl mx-auto px-6 pt-10 pb-6 w-full">
+      <!-- Breadcrumb -->
+      <nav
+        aria-label="Fil d'Ariane"
+        class="flex items-center gap-2 text-xs text-slate-500 mb-5"
+      >
+        <a href="index.html" class="hover:text-accent transition-colors"
+          >Accueil</a
+        >
+        <svg
+          class="w-3 h-3"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 5l7 7-7 7"
+          />
+        </svg>
+        <a
+          href="lister-projets.html"
+          class="hover:text-accent transition-colors"
+          >Projets</a
+        >
+        <svg
+          class="w-3 h-3"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 5l7 7-7 7"
+          />
+        </svg>
+        <span class="text-slate-300">Ajouter</span>
       </nav>
+
+      <div
+        class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
+      >
+        <div>
+          <h1
+            class="text-2xl md:text-3xl font-bold text-white flex items-center gap-3"
+          >
+            Ajouter un projet
+            <span
+              class="text-xs font-mono font-normal bg-amber-400 bg-opacity-20 text-amber-400 border border-amber-400 border-opacity-30 px-2.5 py-1 rounded-md"
+            >
+              Admin
+            </span>
+          </h1>
+          <p class="text-slate-400 text-sm mt-1.5">
+            Renseignez les informations du nouveau projet. Les champs marqués
+            <span class="text-accent">*</span> sont obligatoires.
+          </p>
+        </div>
+
+        <!-- Retour -->
+        <a href="lister-projets.html" class="btn-ghost flex-shrink-0 group">
+          <svg
+            class="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-200"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M7 16l-4-4m0 0l4-4m-4 4h18"
+            />
+          </svg>
+          Annuler
+        </a>
+      </div>
     </header>
 
-    <main>
-      <h2>Ajouter un nouveau projet</h2>
+    <!-- ═══════════════════════════════════════════════
+       FORMULAIRE
+  ════════════════════════════════════════════════ -->
+    <main class="max-w-4xl mx-auto px-6 pb-20 w-full flex-1">
+      <form action="#" method="POST" enctype="multipart/form-data" novalidate>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <!-- ─────────────────────────────────────────
+             COLONNE PRINCIPALE (lg:col-span-2)
+        ────────────────────────────────────────── -->
+          <div class="lg:col-span-2 flex flex-col gap-6">
+            <!-- ── Section 1 : Informations générales ── -->
+            <div class="form-section">
+              <h2 class="form-section-title">
+                <span class="form-section-icon">
+                  <svg
+                    class="w-3.5 h-3.5 text-accent"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                </span>
+                Informations générales
+              </h2>
 
-      <form action="#" method="POST" enctype="multipart/form-data">
-        <!-- ── LIBELLÉ ── -->
-        <div>
-          <label for="libelle">Libellé du projet *</label>
-          <input
-            type="text"
-            id="libelle"
-            name="libelle"
-            placeholder="Ex : Application E-commerce"
-            required
-            maxlength="100"
-          />
-        </div>
+              <div class="flex flex-col gap-5">
+                <!-- Titre -->
+                <div>
+                  <label for="titre" class="field-label">
+                    Titre du projet <span class="field-required">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="titre"
+                    name="titre"
+                    class="input-text"
+                    placeholder="Ex : Application E-commerce avec Node.js"
+                    required
+                    maxlength="100"
+                    autocomplete="off"
+                  />
+                  <span class="field-hint"
+                    >100 caractères maximum. Soyez précis et descriptif.</span
+                  >
+                </div>
 
-        <!-- ── DESCRIPTION ── -->
-        <div>
-          <label for="description">Description *</label>
-          <textarea
-            id="description"
-            name="description"
-            rows="6"
-            placeholder="Décrivez votre projet, ses objectifs et ses fonctionnalités..."
-            required
-          ></textarea>
-        </div>
+                <!-- Description courte -->
+                <div>
+                  <label for="description_courte" class="field-label">
+                    Description courte <span class="field-required">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="description_courte"
+                    name="description_courte"
+                    class="input-text"
+                    placeholder="Ex : Plateforme e-commerce complète avec panier et authentification"
+                    required
+                    maxlength="160"
+                  />
+                  <span class="field-hint"
+                    >160 caractères max. Affiché sur la carte dans la liste des
+                    projets.</span
+                  >
+                </div>
 
-        <!-- ── IMAGE ── -->
-        <div>
-          <label for="image">Image du projet</label>
-          <input
-            type="file"
-            id="image"
-            name="image"
-            accept="image/png, image/jpeg, image/webp"
-          />
-        </div>
+                <!-- Description complète -->
+                <div>
+                  <label for="description" class="field-label">
+                    Description complète <span class="field-required">*</span>
+                  </label>
+                  <textarea
+                    id="description"
+                    name="description"
+                    class="input-textarea"
+                    rows="5"
+                    placeholder="Décrivez le projet en détail : contexte, objectifs, architecture technique, défis rencontrés..."
+                    required
+                  ></textarea>
+                  <span class="field-hint"
+                    >Affiché sur la page de détail du projet. Soyez
+                    précis.</span
+                  >
+                </div>
 
-        <!-- ── CATÉGORIE ── -->
-        <div>
-          <label for="categorie">Catégorie</label>
-          <select id="categorie" name="categorie">
-            <option value="">-- Sélectionner --</option>
-            <option value="web">Application Web</option>
-            <option value="mobile">Application Mobile</option>
-            <option value="desktop">Application Desktop</option>
-            <option value="api">API / Back-End</option>
-            <option value="autre">Autre</option>
-          </select>
-        </div>
+                <!-- Ce que j'ai appris -->
+                <div>
+                  <label for="apprentissages" class="field-label">
+                    Ce que j'ai appris
+                  </label>
+                  <textarea
+                    id="apprentissages"
+                    name="apprentissages"
+                    class="input-textarea"
+                    rows="3"
+                    placeholder="Ex : Mise en place d'une architecture REST, gestion JWT, déploiement..."
+                  ></textarea>
+                  <span class="field-hint"
+                    >Optionnel mais valorisant pour les recruteurs.</span
+                  >
+                </div>
+              </div>
+            </div>
 
-        <!-- ── TECHNOLOGIES ── -->
-        <fieldset>
-          <legend>Technologies utilisées</legend>
+            <!-- ── Section 2 : Technologies ── -->
+            <div class="form-section">
+              <h2 class="form-section-title">
+                <span class="form-section-icon">
+                  <svg
+                    class="w-3.5 h-3.5 text-accent"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                    />
+                  </svg>
+                </span>
+                Technologies utilisées
+              </h2>
 
-          <label>
-            <input type="checkbox" name="technologies" value="HTML5" />
-            HTML5
-          </label>
-          <label>
-            <input type="checkbox" name="technologies" value="CSS3" />
-            CSS3
-          </label>
-          <label>
-            <input type="checkbox" name="technologies" value="JavaScript" />
-            JavaScript
-          </label>
-          <label>
-            <input type="checkbox" name="technologies" value="React" />
-            React
-          </label>
-          <label>
-            <input type="checkbox" name="technologies" value="Node.js" />
-            Node.js
-          </label>
-          <label>
-            <input type="checkbox" name="technologies" value="PHP" />
-            PHP
-          </label>
-          <label>
-            <input type="checkbox" name="technologies" value="MySQL" />
-            MySQL
-          </label>
-          <label>
-            <input type="checkbox" name="technologies" value="MongoDB" />
-            MongoDB
-          </label>
+              <!-- Front-end -->
+              <div class="mb-5">
+                <p
+                  class="text-slate-500 text-xs font-semibold uppercase tracking-widest mb-3"
+                >
+                  Front-end
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <label class="tech-checkbox">
+                    <input
+                      type="checkbox"
+                      name="technologies[]"
+                      value="HTML5"
+                    />
+                    <span>HTML5</span>
+                  </label>
+                  <label class="tech-checkbox">
+                    <input type="checkbox" name="technologies[]" value="CSS3" />
+                    <span>CSS3</span>
+                  </label>
+                  <label class="tech-checkbox">
+                    <input
+                      type="checkbox"
+                      name="technologies[]"
+                      value="Tailwind"
+                    />
+                    <span>Tailwind</span>
+                  </label>
+                  <label class="tech-checkbox">
+                    <input
+                      type="checkbox"
+                      name="technologies[]"
+                      value="JavaScript"
+                    />
+                    <span>JavaScript</span>
+                  </label>
+                  <label class="tech-checkbox">
+                    <input
+                      type="checkbox"
+                      name="technologies[]"
+                      value="React"
+                    />
+                    <span>React</span>
+                  </label>
+                  <label class="tech-checkbox">
+                    <input
+                      type="checkbox"
+                      name="technologies[]"
+                      value="Vue.js"
+                    />
+                    <span>Vue.js</span>
+                  </label>
+                  <label class="tech-checkbox">
+                    <input
+                      type="checkbox"
+                      name="technologies[]"
+                      value="React Native"
+                    />
+                    <span>React Native</span>
+                  </label>
+                </div>
+              </div>
 
-          <!-- Autre technologie saisie manuellement -->
-          <div>
-            <label for="autre-tech">Autre(s) :</label>
-            <input
-              type="text"
-              id="autre-tech"
-              name="autre-tech"
-              placeholder="Ex : Vue.js, Django, Laravel..."
-            />
+              <!-- Back-end -->
+              <div class="mb-5">
+                <p
+                  class="text-slate-500 text-xs font-semibold uppercase tracking-widest mb-3"
+                >
+                  Back-end
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <label class="tech-checkbox">
+                    <input
+                      type="checkbox"
+                      name="technologies[]"
+                      value="Node.js"
+                    />
+                    <span>Node.js</span>
+                  </label>
+                  <label class="tech-checkbox">
+                    <input
+                      type="checkbox"
+                      name="technologies[]"
+                      value="Express"
+                    />
+                    <span>Express</span>
+                  </label>
+                  <label class="tech-checkbox">
+                    <input type="checkbox" name="technologies[]" value="PHP" />
+                    <span>PHP</span>
+                  </label>
+                  <label class="tech-checkbox">
+                    <input
+                      type="checkbox"
+                      name="technologies[]"
+                      value="Python"
+                    />
+                    <span>Python</span>
+                  </label>
+                  <label class="tech-checkbox">
+                    <input
+                      type="checkbox"
+                      name="technologies[]"
+                      value="REST API"
+                    />
+                    <span>REST API</span>
+                  </label>
+                  <label class="tech-checkbox">
+                    <input type="checkbox" name="technologies[]" value="JWT" />
+                    <span>JWT</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Base de données & outils -->
+              <div class="mb-5">
+                <p
+                  class="text-slate-500 text-xs font-semibold uppercase tracking-widest mb-3"
+                >
+                  Base de données & outils
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <label class="tech-checkbox">
+                    <input
+                      type="checkbox"
+                      name="technologies[]"
+                      value="MongoDB"
+                    />
+                    <span>MongoDB</span>
+                  </label>
+                  <label class="tech-checkbox">
+                    <input
+                      type="checkbox"
+                      name="technologies[]"
+                      value="MySQL"
+                    />
+                    <span>MySQL</span>
+                  </label>
+                  <label class="tech-checkbox">
+                    <input
+                      type="checkbox"
+                      name="technologies[]"
+                      value="PostgreSQL"
+                    />
+                    <span>PostgreSQL</span>
+                  </label>
+                  <label class="tech-checkbox">
+                    <input type="checkbox" name="technologies[]" value="Git" />
+                    <span>Git</span>
+                  </label>
+                  <label class="tech-checkbox">
+                    <input
+                      type="checkbox"
+                      name="technologies[]"
+                      value="Docker"
+                    />
+                    <span>Docker</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Autre -->
+              <div>
+                <label for="tech_autres" class="field-label"
+                  >Autre(s) technologie(s)</label
+                >
+                <input
+                  type="text"
+                  id="tech_autres"
+                  name="tech_autres"
+                  class="input-text"
+                  placeholder="Ex : Chart.js, Stripe, Prisma..."
+                />
+                <span class="field-hint"
+                  >Séparez plusieurs technologies par des virgules.</span
+                >
+              </div>
+            </div>
+
+            <!-- ── Section 3 : Fonctionnalités ── -->
+            <div class="form-section">
+              <h2 class="form-section-title">
+                <span class="form-section-icon">
+                  <svg
+                    class="w-3.5 h-3.5 text-accent"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                </span>
+                Fonctionnalités clés
+              </h2>
+
+              <div class="flex flex-col gap-3">
+                <div class="flex items-center gap-2">
+                  <svg
+                    class="w-3.5 h-3.5 text-slate-600 flex-shrink-0"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 12l2 2 4-4"
+                    />
+                  </svg>
+                  <input
+                    type="text"
+                    name="feature[]"
+                    class="input-text"
+                    placeholder="Ex : Authentification utilisateur avec JWT"
+                  />
+                </div>
+
+                <div class="flex items-center gap-2">
+                  <svg
+                    class="w-3.5 h-3.5 text-slate-600 flex-shrink-0"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 12l2 2 4-4"
+                    />
+                  </svg>
+                  <input
+                    type="text"
+                    name="feature[]"
+                    class="input-text"
+                    placeholder="Ex : Interface responsive mobile-first"
+                  />
+                </div>
+
+                <div class="flex items-center gap-2">
+                  <svg
+                    class="w-3.5 h-3.5 text-slate-600 flex-shrink-0"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 12l2 2 4-4"
+                    />
+                  </svg>
+                  <input
+                    type="text"
+                    name="feature[]"
+                    class="input-text"
+                    placeholder="Ex : API RESTful documentée"
+                  />
+                </div>
+
+                <div class="flex items-center gap-2">
+                  <svg
+                    class="w-3.5 h-3.5 text-slate-600 flex-shrink-0"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 12l2 2 4-4"
+                    />
+                  </svg>
+                  <input
+                    type="text"
+                    name="feature[]"
+                    class="input-text"
+                    placeholder="Ex : Tableau de bord administrateur"
+                  />
+                </div>
+
+                <span class="field-hint pl-5"
+                  >Laissez vide les champs non utilisés.</span
+                >
+              </div>
+            </div>
           </div>
-        </fieldset>
+          <!-- /colonne principale -->
 
-        <!-- ── DATE ── -->
-        <div>
-          <label for="date">Date de réalisation</label>
-          <input type="date" id="date" name="date" />
+          <!-- ─────────────────────────────────────────
+             COLONNE LATÉRALE
+        ────────────────────────────────────────── -->
+          <div class="flex flex-col gap-6">
+            <!-- ── Section : Détails ── -->
+            <div class="form-section">
+              <h2 class="form-section-title">
+                <span class="form-section-icon">
+                  <svg
+                    class="w-3.5 h-3.5 text-accent"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    />
+                  </svg>
+                </span>
+                Détails
+              </h2>
+
+              <div class="flex flex-col gap-5">
+                <!-- Catégorie -->
+                <div>
+                  <label for="categorie" class="field-label">
+                    Catégorie <span class="field-required">*</span>
+                  </label>
+                  <select
+                    id="categorie"
+                    name="categorie"
+                    class="input-select"
+                    required
+                  >
+                    <option value="" disabled selected class="text-slate-500">
+                      Sélectionner...
+                    </option>
+                    <option value="web">Application Web</option>
+                    <option value="mobile">Application Mobile</option>
+                    <option value="desktop">Application Desktop</option>
+                    <option value="api">API / Back-End</option>
+                    <option value="autre">Autre</option>
+                  </select>
+                </div>
+
+                <!-- Date -->
+                <div>
+                  <label for="date" class="field-label">
+                    Date de réalisation <span class="field-required">*</span>
+                  </label>
+                  <input
+                    type="month"
+                    id="date"
+                    name="date"
+                    class="input-text"
+                    required
+                  />
+                </div>
+
+                <!-- Durée -->
+                <div>
+                  <label for="duree" class="field-label">Durée</label>
+                  <input
+                    type="text"
+                    id="duree"
+                    name="duree"
+                    class="input-text"
+                    placeholder="Ex : 3 mois"
+                  />
+                </div>
+
+                <!-- Statut -->
+                <div>
+                  <label for="statut" class="field-label">Statut</label>
+                  <select id="statut" name="statut" class="input-select">
+                    <option value="termine" selected>✅ Terminé</option>
+                    <option value="en_cours">🔄 En cours</option>
+                    <option value="pause">⏸ En pause</option>
+                  </select>
+                </div>
+
+                <!-- Rôle -->
+                <div>
+                  <label for="role" class="field-label">Mon rôle</label>
+                  <input
+                    type="text"
+                    id="role"
+                    name="role"
+                    class="input-text"
+                    placeholder="Ex : Développeur Full Stack"
+                    value="Développeur Full Stack"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- ── Section : Médias & Liens ── -->
+            <div class="form-section">
+              <h2 class="form-section-title">
+                <span class="form-section-icon">
+                  <svg
+                    class="w-3.5 h-3.5 text-accent"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                    />
+                  </svg>
+                </span>
+                Médias & Liens
+              </h2>
+
+              <div class="flex flex-col gap-5">
+                <!-- Image -->
+                <div>
+                  <label for="image" class="field-label">Image du projet</label>
+                  <div
+                    class="mt-1 border-2 border-dashed border-slate-700 rounded-xl p-5 text-center hover:border-slate-500 transition-colors duration-200"
+                  >
+                    <svg
+                      class="w-8 h-8 text-slate-600 mx-auto mb-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="1.5"
+                        d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                      />
+                    </svg>
+                    <label for="image" class="cursor-pointer">
+                      <span
+                        class="text-accent text-xs font-medium hover:underline"
+                        >Choisir une image</span
+                      >
+                      <span class="text-slate-500 text-xs">
+                        ou glisser-déposer</span
+                      >
+                    </label>
+                    <input
+                      type="file"
+                      id="image"
+                      name="image"
+                      accept="image/jpeg,image/png,image/webp"
+                      class="sr-only"
+                    />
+                    <p class="text-slate-600 text-xs mt-1">
+                      JPG, PNG, WebP · Max 2 Mo
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Lien démo -->
+                <div>
+                  <label for="lien_demo" class="field-label"
+                    >Lien de démo</label
+                  >
+                  <div class="relative">
+                    <div
+                      class="absolute inset-y-0 left-3 flex items-center pointer-events-none"
+                    >
+                      <svg
+                        class="w-3.5 h-3.5 text-slate-500"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                        />
+                      </svg>
+                    </div>
+                    <input
+                      type="url"
+                      id="lien_demo"
+                      name="lien_demo"
+                      class="input-text pl-9"
+                      placeholder="https://..."
+                    />
+                  </div>
+                  <span class="field-hint">URL complète avec https://</span>
+                </div>
+
+                <!-- Lien GitHub -->
+                <div>
+                  <label for="lien_github" class="field-label"
+                    >Lien GitHub</label
+                  >
+                  <div class="relative">
+                    <div
+                      class="absolute inset-y-0 left-3 flex items-center pointer-events-none"
+                    >
+                      <svg
+                        class="w-3.5 h-3.5 text-slate-500"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.4-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.6 1.2 3.2.9.1-.7.4-1.2.7-1.5-2.5-.3-5.2-1.3-5.2-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.4 11.4 0 016 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.2 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.6 11.6 0 0023.5 12C23.5 5.7 18.3.5 12 .5z"
+                        />
+                      </svg>
+                    </div>
+                    <input
+                      type="url"
+                      id="lien_github"
+                      name="lien_github"
+                      class="input-text pl-9"
+                      placeholder="https://github.com/..."
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ── Résumé / Aide ── -->
+            <div class="border border-slate-700 border-dashed rounded-2xl p-5">
+              <h3
+                class="text-slate-400 text-xs font-semibold uppercase tracking-wider mb-4 flex items-center gap-2"
+              >
+                <svg
+                  class="w-3.5 h-3.5 text-accent"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                  />
+                </svg>
+                Conseils
+              </h3>
+              <ul class="space-y-2.5">
+                <li
+                  class="flex items-start gap-2 text-xs text-slate-500 leading-relaxed"
+                >
+                  <span class="text-accent mt-0.5 flex-shrink-0">→</span>
+                  Un titre clair et précis améliore la lisibilité pour les
+                  recruteurs.
+                </li>
+                <li
+                  class="flex items-start gap-2 text-xs text-slate-500 leading-relaxed"
+                >
+                  <span class="text-accent mt-0.5 flex-shrink-0">→</span>
+                  La description courte est celle affichée sur la carte dans la
+                  liste.
+                </li>
+                <li
+                  class="flex items-start gap-2 text-xs text-slate-500 leading-relaxed"
+                >
+                  <span class="text-accent mt-0.5 flex-shrink-0">→</span>
+                  Préférez une image au format 16:9, minimum 800×450px.
+                </li>
+                <li
+                  class="flex items-start gap-2 text-xs text-slate-500 leading-relaxed"
+                >
+                  <span class="text-accent mt-0.5 flex-shrink-0">→</span>
+                  Ajoutez toujours un lien démo ou GitHub pour la crédibilité.
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- /colonne latérale -->
         </div>
+        <!-- /grid -->
 
-        <!-- ── LIEN DÉMO ── -->
-        <div>
-          <label for="lien">Lien de démo (URL)</label>
-          <input
-            type="url"
-            id="lien"
-            name="lien"
-            placeholder="https://mon-projet.vercel.app"
-          />
-        </div>
+        <!-- ═══════════════════════════════════════════════
+           BARRE D'ACTIONS — épinglée en bas
+      ════════════════════════════════════════════════ -->
+        <div
+          class="sticky bottom-0 left-0 right-0 mt-8 -mx-6 px-6 py-4 bg-primary bg-opacity-95 backdrop-blur border-t border-slate-800"
+        >
+          <div
+            class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4"
+          >
+            <!-- Infos soumission -->
+            <p class="text-slate-500 text-xs flex items-center gap-2">
+              <svg
+                class="w-3.5 h-3.5 flex-shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              Les champs <span class="text-accent mx-1">*</span> sont requis
+              avant soumission.
+            </p>
 
-        <!-- ── BOUTONS ── -->
-        <div>
-          <button type="submit">Ajouter le projet</button>
-          <button type="reset">Réinitialiser</button>
-          <a href="lister-projets.html">Annuler</a>
+            <div class="flex items-center gap-3">
+              <!-- Réinitialiser -->
+              <button
+                type="reset"
+                class="btn-ghost text-slate-500 hover:text-slate-300"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                  />
+                </svg>
+                Réinitialiser
+              </button>
+
+              <!-- Annuler -->
+              <a href="lister-projets.html" class="btn-outline"> Annuler </a>
+
+              <!-- Soumettre -->
+              <button type="submit" class="btn-primary">
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 4v16m8-8H4"
+                  />
+                </svg>
+                Ajouter le projet
+              </button>
+            </div>
+          </div>
         </div>
       </form>
     </main>
 
-    <footer>
-      <p>&copy; 2025 Mon Portfolio</p>
+    <!-- ═══════════════════════════════════════════════
+       FOOTER ADMIN (minimaliste)
+  ════════════════════════════════════════════════ -->
+    <footer class="border-t border-slate-800 py-5 mt-8">
+      <div class="max-w-4xl mx-auto px-6 flex items-center justify-between">
+        <span class="font-mono text-accent text-xs"
+          >&lt;SLLY /&gt; · admin</span
+        >
+        <a
+          href="lister-projets.html"
+          class="text-slate-500 hover:text-slate-300 text-xs transition-colors flex items-center gap-1.5"
+        >
+          <svg
+            class="w-3 h-3"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+            />
+          </svg>
+          Retour au portfolio
+        </a>
+      </div>
     </footer>
   </body>
 </html>

@@ -2,9 +2,10 @@
 
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)](https://developer.mozilla.org/fr/docs/Web/HTML)
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
-[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-181717?style=flat-square&logo=github&logoColor=white)](https://pages.github.com/)
+
+<!-- [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-181717?style=flat-square&logo=github&logoColor=white)](https://pages.github.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
-[![Status](https://img.shields.io/badge/Status-Production-brightgreen?style=flat-square)]()
+[![Status](https://img.shields.io/badge/Status-Production-brightgreen?style=flat-square)]() -->
 
 > Portfolio personnel de **Seydina Limamou Laye Yade**, Développeur Full Stack basé à Dakar, Sénégal.  
 > Construit avec **HTML5 pur + TailwindCSS** — sans framework JS, sans build system.  

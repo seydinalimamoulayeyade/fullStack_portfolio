@@ -1,0 +1,750 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaskFlow — Gestionnaire de Tâches</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: { DEFAULT: "#059669", dark: "#047857", light: "#ecfdf5" },
+            },
+            fontFamily: { sans: ["Inter", "system-ui", "sans-serif"] },
+          },
+        },
+      };
+    </script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style type="text/tailwindcss">
+      @layer base {
+        body {
+          @apply bg-gray-100 text-gray-900 font-sans antialiased;
+        }
+      }
+      @layer components {
+        .btn {
+          @apply inline-flex items-center gap-1.5 text-sm font-medium px-3.5 py-2 rounded-lg transition-all duration-200;
+        }
+        .btn-brand {
+          @apply btn bg-brand text-white hover:bg-brand-dark;
+        }
+        .btn-ghost {
+          @apply btn text-gray-500 hover:text-gray-900 hover:bg-gray-200;
+        }
+        .task-card {
+          @apply bg-white rounded-xl border border-gray-200 p-4 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-grab active:cursor-grabbing;
+        }
+        .priority-high {
+          @apply bg-red-100 text-red-700;
+        }
+        .priority-medium {
+          @apply bg-amber-100 text-amber-700;
+        }
+        .priority-low {
+          @apply bg-green-100 text-green-700;
+        }
+        .col-header {
+          @apply flex items-center justify-between mb-4;
+        }
+      }
+    </style>
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <!-- Back to portfolio -->
+    <div class="bg-gray-900 text-center py-2">
+      <a
+        href="../../lister-projets.html"
+        class="text-gray-400 hover:text-white text-xs flex items-center justify-center gap-1.5 transition-colors"
+      >
+        <svg
+          class="w-3 h-3"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M7 16l-4-4m0 0l4-4m-4 4h18"
+          />
+        </svg>
+        Retour au portfolio — Projet Gestionnaire de Tâches
+      </a>
+    </div>
+
+    <!-- Sidebar + Main layout -->
+    <div class="flex flex-1 overflow-hidden">
+      <!-- Sidebar -->
+      <aside
+        class="hidden md:flex w-56 bg-white border-r border-gray-200 flex-col py-5 px-3 flex-shrink-0"
+      >
+        <div class="flex items-center gap-2 px-3 mb-6">
+          <div
+            class="w-7 h-7 bg-brand rounded-lg flex items-center justify-center"
+          >
+            <svg
+              class="w-4 h-4 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+              />
+            </svg>
+          </div>
+          <span class="font-bold text-gray-900">TaskFlow</span>
+        </div>
+
+        <nav class="space-y-0.5 flex-1">
+          <a
+            href="#"
+            class="flex items-center gap-2.5 px-3 py-2 rounded-lg bg-brand-light text-brand text-sm font-medium"
+          >
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+              />
+            </svg>
+            Tableau de bord
+          </a>
+          <a
+            href="#"
+            class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-gray-500 hover:bg-gray-100 text-sm transition-colors"
+          >
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+              />
+            </svg>
+            Mes tâches
+            <span
+              class="ml-auto bg-gray-200 text-gray-600 text-xs font-medium px-1.5 py-0.5 rounded-full"
+              >8</span
+            >
+          </a>
+          <a
+            href="#"
+            class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-gray-500 hover:bg-gray-100 text-sm transition-colors"
+          >
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+            </svg>
+            Équipe
+          </a>
+          <a
+            href="#"
+            class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-gray-500 hover:bg-gray-100 text-sm transition-colors"
+          >
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              />
+            </svg>
+            Calendrier
+          </a>
+          <a
+            href="#"
+            class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-gray-500 hover:bg-gray-100 text-sm transition-colors"
+          >
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+              />
+            </svg>
+            Rapports
+          </a>
+        </nav>
+
+        <!-- Projets -->
+        <div class="mt-4 pt-4 border-t border-gray-100">
+          <p
+            class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3 mb-2"
+          >
+            Projets
+          </p>
+          <a
+            href="#"
+            class="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm text-gray-600 hover:bg-gray-100 transition-colors"
+          >
+            <span class="w-2 h-2 rounded-full bg-brand"></span> Portfolio Web
+          </a>
+          <a
+            href="#"
+            class="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm text-gray-600 hover:bg-gray-100 transition-colors"
+          >
+            <span class="w-2 h-2 rounded-full bg-blue-500"></span> API REST
+          </a>
+          <a
+            href="#"
+            class="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm text-gray-600 hover:bg-gray-100 transition-colors"
+          >
+            <span class="w-2 h-2 rounded-full bg-purple-500"></span> Dashboard
+          </a>
+        </div>
+
+        <!-- User -->
+        <div
+          class="mt-4 pt-4 border-t border-gray-100 flex items-center gap-2.5 px-3"
+        >
+          <div
+            class="w-8 h-8 rounded-full bg-brand-light border-2 border-brand flex items-center justify-center"
+          >
+            <span class="text-brand text-xs font-bold">SY</span>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="text-sm font-medium text-gray-900 truncate">
+              Seydina L.Y.
+            </p>
+            <p class="text-xs text-gray-400">Admin</p>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main content -->
+      <div class="flex-1 flex flex-col overflow-hidden">
+        <!-- Top bar -->
+        <div
+          class="bg-white border-b border-gray-200 px-6 py-3 flex items-center justify-between gap-4"
+        >
+          <div>
+            <h1 class="text-base font-semibold text-gray-900">
+              Portfolio Web — Sprint 3
+            </h1>
+            <p class="text-xs text-gray-400">
+              Mis à jour il y a 5 min · 12 tâches actives
+            </p>
+          </div>
+          <div class="flex items-center gap-2">
+            <!-- Avatars équipe -->
+            <div class="flex -space-x-2">
+              <div
+                class="w-7 h-7 rounded-full bg-brand-light border-2 border-white flex items-center justify-center"
+              >
+                <span class="text-brand text-xs font-bold">SY</span>
+              </div>
+              <div
+                class="w-7 h-7 rounded-full bg-blue-100 border-2 border-white flex items-center justify-center"
+              >
+                <span class="text-blue-600 text-xs font-bold">AM</span>
+              </div>
+              <div
+                class="w-7 h-7 rounded-full bg-purple-100 border-2 border-white flex items-center justify-center"
+              >
+                <span class="text-purple-600 text-xs font-bold">FK</span>
+              </div>
+            </div>
+            <button class="btn-brand text-xs">
+              <svg
+                class="w-3.5 h-3.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 4v16m8-8H4"
+                />
+              </svg>
+              Nouvelle tâche
+            </button>
+          </div>
+        </div>
+
+        <!-- Kanban board -->
+        <div class="flex-1 overflow-x-auto p-6">
+          <div class="flex gap-5 min-w-max md:min-w-0 md:grid md:grid-cols-3">
+            <!-- Colonne À faire -->
+            <div class="w-72 md:w-auto flex flex-col">
+              <div class="col-header">
+                <div class="flex items-center gap-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-gray-400"></span>
+                  <h2 class="font-semibold text-gray-700 text-sm">À faire</h2>
+                  <span
+                    class="text-xs bg-gray-200 text-gray-500 px-2 py-0.5 rounded-full font-medium"
+                    >5</span
+                  >
+                </div>
+                <button class="btn-ghost p-1.5 rounded-lg">
+                  <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 4v16m8-8H4"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <div class="flex flex-col gap-3">
+                <div class="task-card">
+                  <div class="flex items-start justify-between gap-2 mb-2">
+                    <h3 class="text-sm font-medium text-gray-900 leading-snug">
+                      Intégrer le module de paiement Wave
+                    </h3>
+                    <span
+                      class="text-xs font-medium px-2 py-0.5 rounded-full priority-high flex-shrink-0"
+                      >Haute</span
+                    >
+                  </div>
+                  <p class="text-xs text-gray-400 mb-3 leading-relaxed">
+                    Connecter l'API Wave pour les paiements mobile.
+                  </p>
+                  <div class="flex items-center justify-between">
+                    <div
+                      class="flex items-center gap-1.5 text-xs text-gray-400"
+                    >
+                      <svg
+                        class="w-3.5 h-3.5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                        />
+                      </svg>
+                      12 jan.
+                    </div>
+                    <div
+                      class="w-6 h-6 rounded-full bg-brand-light flex items-center justify-center"
+                    >
+                      <span class="text-brand text-xs font-bold">SY</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="task-card">
+                  <div class="flex items-start justify-between gap-2 mb-2">
+                    <h3 class="text-sm font-medium text-gray-900 leading-snug">
+                      Créer la page de profil utilisateur
+                    </h3>
+                    <span
+                      class="text-xs font-medium px-2 py-0.5 rounded-full priority-medium flex-shrink-0"
+                      >Moyen</span
+                    >
+                  </div>
+                  <p class="text-xs text-gray-400 mb-3 leading-relaxed">
+                    Formulaire d'édition + upload photo de profil.
+                  </p>
+                  <div class="flex items-center gap-2 mb-3">
+                    <div class="flex-1 bg-gray-100 rounded-full h-1.5">
+                      <div
+                        class="bg-amber-400 h-1.5 rounded-full"
+                        style="width: 30%"
+                      ></div>
+                    </div>
+                    <span class="text-xs text-gray-400">30%</span>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <div
+                      class="flex items-center gap-1.5 text-xs text-gray-400"
+                    >
+                      <svg
+                        class="w-3.5 h-3.5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"
+                        />
+                      </svg>
+                      2 fichiers
+                    </div>
+                    <div
+                      class="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center"
+                    >
+                      <span class="text-blue-600 text-xs font-bold">AM</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="task-card">
+                  <div class="flex items-start justify-between gap-2 mb-2">
+                    <h3 class="text-sm font-medium text-gray-900 leading-snug">
+                      Rédiger les tests unitaires API
+                    </h3>
+                    <span
+                      class="text-xs font-medium px-2 py-0.5 rounded-full priority-low flex-shrink-0"
+                      >Faible</span
+                    >
+                  </div>
+                  <p class="text-xs text-gray-400 mb-3 leading-relaxed">
+                    Tests Jest sur les routes /users et /products.
+                  </p>
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2 text-xs text-gray-400">
+                      <span class="flex items-center gap-1"
+                        ><svg
+                          class="w-3.5 h-3.5"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
+                          /></svg
+                        >3</span
+                      >
+                    </div>
+                    <div
+                      class="w-6 h-6 rounded-full bg-purple-100 flex items-center justify-center"
+                    >
+                      <span class="text-purple-600 text-xs font-bold">FK</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Add task -->
+              <button
+                class="mt-3 w-full flex items-center gap-2 px-3 py-2.5 rounded-xl border-2 border-dashed border-gray-200 text-gray-400 hover:border-gray-300 hover:text-gray-500 text-sm transition-colors"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 4v16m8-8H4"
+                  />
+                </svg>
+                Ajouter une tâche
+              </button>
+            </div>
+
+            <!-- Colonne En cours -->
+            <div class="w-72 md:w-auto flex flex-col">
+              <div class="col-header">
+                <div class="flex items-center gap-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
+                  <h2 class="font-semibold text-gray-700 text-sm">En cours</h2>
+                  <span
+                    class="text-xs bg-blue-100 text-blue-600 px-2 py-0.5 rounded-full font-medium"
+                    >4</span
+                  >
+                </div>
+                <button class="btn-ghost p-1.5 rounded-lg">
+                  <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 4v16m8-8H4"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <div class="flex flex-col gap-3">
+                <div class="task-card border-l-4 border-l-blue-500">
+                  <div class="flex items-start justify-between gap-2 mb-2">
+                    <h3 class="text-sm font-medium text-gray-900 leading-snug">
+                      Dashboard admin — statistiques ventes
+                    </h3>
+                    <span
+                      class="text-xs font-medium px-2 py-0.5 rounded-full priority-high flex-shrink-0"
+                      >Haute</span
+                    >
+                  </div>
+                  <p class="text-xs text-gray-400 mb-3 leading-relaxed">
+                    Graphiques Chart.js et KPI du mois en cours.
+                  </p>
+                  <div class="flex items-center gap-2 mb-3">
+                    <div class="flex-1 bg-gray-100 rounded-full h-1.5">
+                      <div
+                        class="bg-blue-500 h-1.5 rounded-full"
+                        style="width: 65%"
+                      ></div>
+                    </div>
+                    <span class="text-xs text-gray-400">65%</span>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <div
+                      class="flex items-center gap-1.5 text-xs text-red-500 font-medium"
+                    >
+                      <svg
+                        class="w-3.5 h-3.5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                        />
+                      </svg>
+                      Demain
+                    </div>
+                    <div
+                      class="w-6 h-6 rounded-full bg-brand-light flex items-center justify-center"
+                    >
+                      <span class="text-brand text-xs font-bold">SY</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="task-card border-l-4 border-l-blue-500">
+                  <div class="flex items-start justify-between gap-2 mb-2">
+                    <h3 class="text-sm font-medium text-gray-900 leading-snug">
+                      Optimiser les requêtes MongoDB
+                    </h3>
+                    <span
+                      class="text-xs font-medium px-2 py-0.5 rounded-full priority-medium flex-shrink-0"
+                      >Moyen</span
+                    >
+                  </div>
+                  <p class="text-xs text-gray-400 mb-3 leading-relaxed">
+                    Ajouter des index sur les collections products et orders.
+                  </p>
+                  <div class="flex items-center gap-2 mb-3">
+                    <div class="flex-1 bg-gray-100 rounded-full h-1.5">
+                      <div
+                        class="bg-blue-500 h-1.5 rounded-full"
+                        style="width: 80%"
+                      ></div>
+                    </div>
+                    <span class="text-xs text-gray-400">80%</span>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs text-gray-400">15 jan.</span>
+                    <div class="flex -space-x-1.5">
+                      <div
+                        class="w-6 h-6 rounded-full bg-brand-light border-2 border-white flex items-center justify-center"
+                      >
+                        <span class="text-brand text-xs font-bold">SY</span>
+                      </div>
+                      <div
+                        class="w-6 h-6 rounded-full bg-blue-100 border-2 border-white flex items-center justify-center"
+                      >
+                        <span class="text-blue-600 text-xs font-bold">AM</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="task-card border-l-4 border-l-blue-500">
+                  <div class="flex items-start justify-between gap-2 mb-2">
+                    <h3 class="text-sm font-medium text-gray-900 leading-snug">
+                      Migration vers Tailwind v4
+                    </h3>
+                    <span
+                      class="text-xs font-medium px-2 py-0.5 rounded-full priority-low flex-shrink-0"
+                      >Faible</span
+                    >
+                  </div>
+                  <p class="text-xs text-gray-400 mb-3 leading-relaxed">
+                    Mettre à jour les classes dépréciées dans les templates.
+                  </p>
+                  <div class="flex items-center gap-2 mb-3">
+                    <div class="flex-1 bg-gray-100 rounded-full h-1.5">
+                      <div
+                        class="bg-blue-500 h-1.5 rounded-full"
+                        style="width: 45%"
+                      ></div>
+                    </div>
+                    <span class="text-xs text-gray-400">45%</span>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs text-gray-400">20 jan.</span>
+                    <div
+                      class="w-6 h-6 rounded-full bg-purple-100 flex items-center justify-center"
+                    >
+                      <span class="text-purple-600 text-xs font-bold">FK</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Colonne Terminé -->
+            <div class="w-72 md:w-auto flex flex-col">
+              <div class="col-header">
+                <div class="flex items-center gap-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-brand"></span>
+                  <h2 class="font-semibold text-gray-700 text-sm">Terminé</h2>
+                  <span
+                    class="text-xs bg-brand-light text-brand px-2 py-0.5 rounded-full font-medium"
+                    >3</span
+                  >
+                </div>
+              </div>
+              <div class="flex flex-col gap-3">
+                <div class="task-card opacity-70">
+                  <div class="flex items-start gap-2 mb-2">
+                    <svg
+                      class="w-4 h-4 text-brand flex-shrink-0 mt-0.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2.5"
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                    <h3
+                      class="text-sm font-medium text-gray-500 line-through leading-snug"
+                    >
+                      Mise en place de l'authentification JWT
+                    </h3>
+                  </div>
+                  <div class="flex items-center justify-between pl-6">
+                    <span class="text-xs text-gray-300">Terminé le 8 jan.</span>
+                    <div
+                      class="w-6 h-6 rounded-full bg-brand-light flex items-center justify-center"
+                    >
+                      <span class="text-brand text-xs font-bold">SY</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="task-card opacity-70">
+                  <div class="flex items-start gap-2 mb-2">
+                    <svg
+                      class="w-4 h-4 text-brand flex-shrink-0 mt-0.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2.5"
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                    <h3
+                      class="text-sm font-medium text-gray-500 line-through leading-snug"
+                    >
+                      Modélisation des schémas MongoDB
+                    </h3>
+                  </div>
+                  <div class="flex items-center justify-between pl-6">
+                    <span class="text-xs text-gray-300">Terminé le 5 jan.</span>
+                    <div
+                      class="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center"
+                    >
+                      <span class="text-blue-600 text-xs font-bold">AM</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="task-card opacity-70">
+                  <div class="flex items-start gap-2 mb-2">
+                    <svg
+                      class="w-4 h-4 text-brand flex-shrink-0 mt-0.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2.5"
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                    <h3
+                      class="text-sm font-medium text-gray-500 line-through leading-snug"
+                    >
+                      Configuration du serveur Express
+                    </h3>
+                  </div>
+                  <div class="flex items-center justify-between pl-6">
+                    <span class="text-xs text-gray-300">Terminé le 2 jan.</span>
+                    <div
+                      class="w-6 h-6 rounded-full bg-brand-light flex items-center justify-center"
+                    >
+                      <span class="text-brand text-xs font-bold">SY</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

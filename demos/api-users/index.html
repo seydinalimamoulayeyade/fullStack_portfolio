@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UserAPI — Documentation REST</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "system-ui", "sans-serif"],
+              mono: ["JetBrains Mono", "monospace"],
+            },
+          },
+        },
+      };
+    </script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-950 text-gray-100 font-sans antialiased">
+    <div class="bg-gray-900 text-center py-2 border-b border-gray-800">
+      <a
+        href="../../lister-projets.html"
+        class="text-gray-400 hover:text-white text-xs flex items-center justify-center gap-1.5 transition-colors"
+      >
+        <svg
+          class="w-3 h-3"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M7 16l-4-4m0 0l4-4m-4 4h18"
+          />
+        </svg>
+        Retour au portfolio — Projet API REST
+      </a>
+    </div>
+
+    <div class="flex">
+      <!-- Sidebar navigation -->
+      <aside
+        class="hidden md:block w-64 bg-gray-900 border-r border-gray-800 h-screen sticky top-0 overflow-y-auto py-6 px-4 flex-shrink-0"
+      >
+        <div class="mb-6">
+          <div class="flex items-center gap-2 mb-1">
+            <div
+              class="w-6 h-6 bg-violet-600 rounded flex items-center justify-center"
+            >
+              <svg
+                class="w-3.5 h-3.5 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                />
+              </svg>
+            </div>
+            <span class="font-bold text-white">UserAPI</span>
+          </div>
+          <span
+            class="text-xs bg-violet-900 text-violet-300 px-2 py-0.5 rounded font-mono"
+            >v1.2.0</span
+          >
+        </div>
+
+        <nav class="space-y-1 text-sm">
+          <p
+            class="text-gray-500 text-xs uppercase tracking-wider font-semibold pt-2 pb-1 px-2"
+          >
+            Introduction
+          </p>
+          <a
+            href="#"
+            class="flex items-center gap-2 px-3 py-1.5 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-white transition-colors"
+            >Démarrage rapide</a
+          >
+          <a
+            href="#"
+            class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-violet-900 bg-opacity-50 text-violet-300"
+            >Authentification</a
+          >
+
+          <p
+            class="text-gray-500 text-xs uppercase tracking-wider font-semibold pt-4 pb-1 px-2"
+          >
+            Endpoints
+          </p>
+          <a
+            href="#"
+            class="flex items-center gap-2 px-3 py-1.5 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-white transition-colors"
+          >
+            <span
+              class="text-xs font-mono bg-green-900 text-green-400 px-1.5 rounded w-10 text-center"
+              >GET</span
+            >
+            /users
+          </a>
+          <a
+            href="#"
+            class="flex items-center gap-2 px-3 py-1.5 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-white transition-colors"
+          >
+            <span
+              class="text-xs font-mono bg-blue-900 text-blue-400 px-1.5 rounded w-10 text-center"
+              >POST</span
+            >
+            /users
+          </a>
+          <a
+            href="#"
+            class="flex items-center gap-2 px-3 py-1.5 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-white transition-colors"
+          >
+            <span
+              class="text-xs font-mono bg-green-900 text-green-400 px-1.5 rounded w-10 text-center"
+              >GET</span
+            >
+            /users/:id
+          </a>
+          <a
+            href="#"
+            class="flex items-center gap-2 px-3 py-1.5 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-white transition-colors"
+          >
+            <span
+              class="text-xs font-mono bg-amber-900 text-amber-400 px-1.5 rounded w-10 text-center"
+              >PUT</span
+            >
+            /users/:id
+          </a>
+          <a
+            href="#"
+            class="flex items-center gap-2 px-3 py-1.5 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-white transition-colors"
+          >
+            <span
+              class="text-xs font-mono bg-red-900 text-red-400 px-1.5 rounded w-10 text-center"
+              >DEL</span
+            >
+            /users/:id
+          </a>
+
+          <p
+            class="text-gray-500 text-xs uppercase tracking-wider font-semibold pt-4 pb-1 px-2"
+          >
+            Auth
+          </p>
+          <a
+            href="#"
+            class="flex items-center gap-2 px-3 py-1.5 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-white transition-colors"
+          >
+            <span
+              class="text-xs font-mono bg-blue-900 text-blue-400 px-1.5 rounded w-10 text-center"
+              >POST</span
+            >
+            /login
+          </a>
+          <a
+            href="#"
+            class="flex items-center gap-2 px-3 py-1.5 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-white transition-colors"
+          >
+            <span
+              class="text-xs font-mono bg-blue-900 text-blue-400 px-1.5 rounded w-10 text-center"
+              >POST</span
+            >
+            /refresh
+          </a>
+        </nav>
+      </aside>
+
+      <!-- Main content -->
+      <main class="flex-1 max-w-3xl py-8 px-6">
+        <!-- Header -->
+        <div class="mb-10">
+          <div class="flex items-center gap-3 mb-3">
+            <h1 class="text-2xl font-bold text-white">UserAPI</h1>
+            <span
+              class="text-xs bg-violet-900 text-violet-300 px-2.5 py-1 rounded-full font-mono"
+              >v1.2.0</span
+            >
+            <span
+              class="text-xs bg-green-900 text-green-400 px-2.5 py-1 rounded-full font-medium flex items-center gap-1"
+            >
+              <span
+                class="w-1.5 h-1.5 rounded-full bg-green-400 inline-block"
+              ></span>
+              Opérationnel
+            </span>
+          </div>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            API RESTful de gestion des utilisateurs avec authentification JWT,
+            rôles et permissions. Construite avec Node.js et Express.
+          </p>
+          <div class="flex flex-wrap gap-2 mt-4">
+            <span
+              class="text-xs font-mono bg-gray-800 text-gray-300 px-2.5 py-1 rounded-md border border-gray-700"
+              >Base URL</span
+            >
+            <code
+              class="text-xs font-mono bg-gray-800 text-violet-300 px-3 py-1 rounded-md border border-gray-700"
+              >https://api.userapi.dev/v1</code
+            >
+          </div>
+        </div>
+
+        <!-- Authentification section -->
+        <section class="mb-10">
+          <h2
+            class="text-lg font-semibold text-white mb-4 pb-3 border-b border-gray-800 flex items-center gap-2"
+          >
+            <svg
+              class="w-4 h-4 text-violet-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+              />
+            </svg>
+            Authentification
+          </h2>
+          <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+            Toutes les requêtes (sauf
+            <code
+              class="text-violet-300 font-mono text-xs bg-gray-800 px-1.5 py-0.5 rounded"
+              >POST /login</code
+            >) nécessitent un token JWT dans le header Authorization.
+          </p>
+          <div
+            class="bg-gray-900 rounded-xl border border-gray-800 p-4 font-mono text-sm"
+          >
+            <div
+              class="flex items-center gap-2 mb-3 pb-3 border-b border-gray-800"
+            >
+              <span class="w-2.5 h-2.5 rounded-full bg-red-500"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-green-500"></span>
+              <span class="text-gray-500 text-xs ml-2"
+                >Authorization header</span
+              >
+            </div>
+            <code class="text-green-400">Authorization</code
+            ><code class="text-gray-500">: </code
+            ><code class="text-blue-300">Bearer </code
+            ><code class="text-amber-300"
+              >eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...</code
+            >
+          </div>
+        </section>
+
+        <!-- Endpoint: GET /users -->
+        <section
+          class="mb-8 bg-gray-900 rounded-2xl border border-gray-800 overflow-hidden"
+        >
+          <div class="flex items-center gap-3 p-5 border-b border-gray-800">
+            <span
+              class="text-sm font-bold font-mono bg-green-900 text-green-400 px-3 py-1 rounded-lg"
+              >GET</span
+            >
+            <code class="text-white font-mono text-sm">/users</code>
+            <span class="ml-auto text-gray-400 text-xs"
+              >Récupérer tous les utilisateurs</span
+            >
+          </div>
+          <div class="p-5">
+            <p class="text-gray-400 text-sm mb-5">
+              Retourne la liste paginée de tous les utilisateurs. Requiert le
+              rôle <span class="text-amber-300 font-mono text-xs">admin</span>.
+            </p>
+
+            <!-- Query params -->
+            <h3
+              class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3"
+            >
+              Paramètres de requête
+            </h3>
+            <div class="space-y-2 mb-5">
+              <div
+                class="flex items-start gap-4 text-sm bg-gray-800 rounded-lg px-4 py-2.5"
+              >
+                <code class="text-violet-300 font-mono w-24 flex-shrink-0"
+                  >page</code
+                >
+                <code
+                  class="text-amber-300 font-mono w-16 flex-shrink-0 text-xs"
+                  >integer</code
+                >
+                <span class="text-gray-400 text-xs"
+                  >Page à afficher (défaut : 1)</span
+                >
+              </div>
+              <div
+                class="flex items-start gap-4 text-sm bg-gray-800 rounded-lg px-4 py-2.5"
+              >
+                <code class="text-violet-300 font-mono w-24 flex-shrink-0"
+                  >limit</code
+                >
+                <code
+                  class="text-amber-300 font-mono w-16 flex-shrink-0 text-xs"
+                  >integer</code
+                >
+                <span class="text-gray-400 text-xs"
+                  >Nombre de résultats par page (défaut : 20, max : 100)</span
+                >
+              </div>
+              <div
+                class="flex items-start gap-4 text-sm bg-gray-800 rounded-lg px-4 py-2.5"
+              >
+                <code class="text-violet-300 font-mono w-24 flex-shrink-0"
+                  >role</code
+                >
+                <code
+                  class="text-amber-300 font-mono w-16 flex-shrink-0 text-xs"
+                  >string</code
+                >
+                <span class="text-gray-400 text-xs"
+                  >Filtrer par rôle :
+                  <code class="text-green-400">admin</code> |
+                  <code class="text-green-400">user</code></span
+                >
+              </div>
+            </div>
+
+            <!-- Response -->
+            <h3
+              class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3 flex items-center gap-2"
+            >
+              Réponse
+              <span
+                class="bg-green-900 text-green-400 text-xs font-mono px-2 py-0.5 rounded"
+                >200 OK</span
+              >
+            </h3>
+            <div
+              class="bg-gray-800 rounded-xl p-4 font-mono text-xs leading-relaxed"
+            >
+              <pre
+                class="text-gray-300 overflow-x-auto"
+              ><span class="text-gray-500">{</span>
+  <span class="text-violet-300">"success"</span><span class="text-gray-500">:</span> <span class="text-green-400">true</span><span class="text-gray-500">,</span>
+  <span class="text-violet-300">"data"</span><span class="text-gray-500">:</span> <span class="text-gray-500">[</span>
+    <span class="text-gray-500">{</span>
+      <span class="text-violet-300">"_id"</span><span class="text-gray-500">:</span> <span class="text-amber-300">"64f2b3c8e1d9a7b23c4d5e6f"</span><span class="text-gray-500">,</span>
+      <span class="text-violet-300">"name"</span><span class="text-gray-500">:</span> <span class="text-amber-300">"Seydina Limamou Laye Yade"</span><span class="text-gray-500">,</span>
+      <span class="text-violet-300">"email"</span><span class="text-gray-500">:</span> <span class="text-amber-300">"seydina@example.com"</span><span class="text-gray-500">,</span>
+      <span class="text-violet-300">"role"</span><span class="text-gray-500">:</span> <span class="text-amber-300">"admin"</span><span class="text-gray-500">,</span>
+      <span class="text-violet-300">"createdAt"</span><span class="text-gray-500">:</span> <span class="text-amber-300">"2025-01-12T10:30:00.000Z"</span>
+    <span class="text-gray-500">}</span>
+  <span class="text-gray-500">],</span>
+  <span class="text-violet-300">"pagination"</span><span class="text-gray-500">:</span> <span class="text-gray-500">{</span>
+    <span class="text-violet-300">"page"</span><span class="text-gray-500">:</span> <span class="text-blue-300">1</span><span class="text-gray-500">,</span>
+    <span class="text-violet-300">"limit"</span><span class="text-gray-500">:</span> <span class="text-blue-300">20</span><span class="text-gray-500">,</span>
+    <span class="text-violet-300">"total"</span><span class="text-gray-500">:</span> <span class="text-blue-300">247</span>
+  <span class="text-gray-500">}</span>
+<span class="text-gray-500">}</span></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- Endpoint: POST /users -->
+        <section
+          class="mb-8 bg-gray-900 rounded-2xl border border-gray-800 overflow-hidden"
+        >
+          <div class="flex items-center gap-3 p-5 border-b border-gray-800">
+            <span
+              class="text-sm font-bold font-mono bg-blue-900 text-blue-400 px-3 py-1 rounded-lg"
+              >POST</span
+            >
+            <code class="text-white font-mono text-sm">/users</code>
+            <span class="ml-auto text-gray-400 text-xs"
+              >Créer un utilisateur</span
+            >
+          </div>
+          <div class="p-5">
+            <p class="text-gray-400 text-sm mb-5">
+              Crée un nouvel utilisateur. Le mot de passe est haché avec bcrypt
+              avant stockage.
+            </p>
+
+            <h3
+              class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3"
+            >
+              Body (JSON)
+            </h3>
+            <div class="space-y-2 mb-5">
+              <div
+                class="flex items-start gap-4 text-sm bg-gray-800 rounded-lg px-4 py-2.5"
+              >
+                <code class="text-violet-300 font-mono w-24 flex-shrink-0"
+                  >name</code
+                >
+                <code
+                  class="text-amber-300 font-mono w-16 flex-shrink-0 text-xs"
+                  >string*</code
+                >
+                <span class="text-gray-400 text-xs"
+                  >Nom complet (2–100 caractères)</span
+                >
+              </div>
+              <div
+                class="flex items-start gap-4 text-sm bg-gray-800 rounded-lg px-4 py-2.5"
+              >
+                <code class="text-violet-300 font-mono w-24 flex-shrink-0"
+                  >email</code
+                >
+                <code
+                  class="text-amber-300 font-mono w-16 flex-shrink-0 text-xs"
+                  >string*</code
+                >
+                <span class="text-gray-400 text-xs"
+                  >Email valide et unique</span
+                >
+              </div>
+              <div
+                class="flex items-start gap-4 text-sm bg-gray-800 rounded-lg px-4 py-2.5"
+              >
+                <code class="text-violet-300 font-mono w-24 flex-shrink-0"
+                  >password</code
+                >
+                <code
+                  class="text-amber-300 font-mono w-16 flex-shrink-0 text-xs"
+                  >string*</code
+                >
+                <span class="text-gray-400 text-xs"
+                  >Min 8 caractères, 1 majuscule, 1 chiffre</span
+                >
+              </div>
+              <div
+                class="flex items-start gap-4 text-sm bg-gray-800 rounded-lg px-4 py-2.5"
+              >
+                <code class="text-violet-300 font-mono w-24 flex-shrink-0"
+                  >role</code
+                >
+                <code
+                  class="text-amber-300 font-mono w-16 flex-shrink-0 text-xs"
+                  >string</code
+                >
+                <span class="text-gray-400 text-xs"
+                  >Défaut : <code class="text-green-400">"user"</code></span
+                >
+              </div>
+            </div>
+
+            <div class="flex gap-3 flex-wrap">
+              <div>
+                <h3
+                  class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2 flex items-center gap-1.5"
+                >
+                  <span
+                    class="bg-green-900 text-green-400 text-xs font-mono px-2 py-0.5 rounded"
+                    >201 Created</span
+                  >
+                </h3>
+                <div class="bg-gray-800 rounded-xl p-4 font-mono text-xs">
+                  <pre
+                    class="text-gray-300"
+                  ><span class="text-gray-500">{</span> <span class="text-violet-300">"success"</span><span class="text-gray-500">:</span> <span class="text-green-400">true</span><span class="text-gray-500">,</span> <span class="text-violet-300">"data"</span><span class="text-gray-500">:</span> <span class="text-gray-500">{</span> <span class="text-violet-300">"_id"</span><span class="text-gray-500">:</span> <span class="text-amber-300">"..."</span> <span class="text-gray-500">}</span> <span class="text-gray-500">}</span></pre>
+                </div>
+              </div>
+              <div>
+                <h3
+                  class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2 flex items-center gap-1.5"
+                >
+                  <span
+                    class="bg-red-900 text-red-400 text-xs font-mono px-2 py-0.5 rounded"
+                    >400 Bad Request</span
+                  >
+                </h3>
+                <div class="bg-gray-800 rounded-xl p-4 font-mono text-xs">
+                  <pre
+                    class="text-gray-300"
+                  ><span class="text-gray-500">{</span> <span class="text-violet-300">"success"</span><span class="text-gray-500">:</span> <span class="text-red-400">false</span><span class="text-gray-500">,</span> <span class="text-violet-300">"error"</span><span class="text-gray-500">:</span> <span class="text-amber-300">"Email déjà utilisé"</span> <span class="text-gray-500">}</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Endpoint: DELETE -->
+        <section
+          class="mb-8 bg-gray-900 rounded-2xl border border-gray-800 overflow-hidden"
+        >
+          <div class="flex items-center gap-3 p-5 border-b border-gray-800">
+            <span
+              class="text-sm font-bold font-mono bg-red-900 text-red-400 px-3 py-1 rounded-lg"
+              >DELETE</span
+            >
+            <code class="text-white font-mono text-sm">/users/:id</code>
+            <span class="ml-auto text-gray-400 text-xs"
+              >Supprimer un utilisateur</span
+            >
+          </div>
+          <div class="p-5">
+            <p class="text-gray-400 text-sm mb-4">
+              Suppression définitive. Requiert le rôle
+              <span class="text-amber-300 font-mono text-xs">admin</span>. Un
+              utilisateur ne peut pas se supprimer lui-même.
+            </p>
+            <div
+              class="bg-amber-900 bg-opacity-30 border border-amber-700 border-opacity-50 rounded-xl px-4 py-3 flex items-start gap-3"
+            >
+              <svg
+                class="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                />
+              </svg>
+              <p class="text-amber-300 text-xs leading-relaxed">
+                Cette action est irréversible. Les données de l'utilisateur sont
+                supprimées définitivement de la base MongoDB.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <p class="text-center text-gray-500 text-xs mt-8">
+          UserAPI v1.2.0 · Projet démo · Seydina Limamou Laye Yade ·
+          <a
+            href="../../lister-projets.html"
+            class="text-violet-400 hover:text-violet-300 transition-colors"
+            >Retour au portfolio</a
+          >
+        </p>
+      </main>
+    </div>
+  </body>
+</html>

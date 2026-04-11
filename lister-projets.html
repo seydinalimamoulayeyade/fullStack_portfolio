@@ -147,12 +147,16 @@
           Me contacter
         </a>
 
-        <!-- Menu mobile -->
-        <label
-          for="mobile-menu"
-          class="md:hidden cursor-pointer p-2 text-slate-300 hover:text-accent"
+        <!-- Menu mobile — bouton JS (feat 03) -->
+        <button
+          id="mobile-menu-toggle"
+          class="md:hidden p-2 text-slate-300 hover:text-accent transition-colors"
+          aria-label="Ouvrir le menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu-panel"
         >
           <svg
+            id="mobile-menu-icon"
             class="w-5 h-5"
             fill="none"
             stroke="currentColor"
@@ -165,12 +169,12 @@
               d="M4 6h16M4 12h16M4 18h16"
             />
           </svg>
-        </label>
+        </button>
       </div>
 
-      <input type="checkbox" id="mobile-menu" class="hidden peer" />
       <div
-        class="hidden peer-checked:block md:hidden border-t border-slate-800 bg-primary px-6 py-4 space-y-3"
+        id="mobile-menu-panel"
+        class="hidden md:hidden border-t border-slate-800 bg-primary px-6 py-4 space-y-3"
       >
         <a href="index.html" class="block nav-link">Accueil</a>
         <a href="lister-projets.html" class="block nav-link-active">Projets</a>
@@ -959,81 +963,22 @@
       </div>
     </footer>
 
-    <!-- ═══════════════════════════════════════════════
-       JS — Filtre des projets par catégorie
-       Fonctionnalité v2.1.0
-  ════════════════════════════════════════════════ -->
-    <script>
-      (function () {
-        const buttons = document.querySelectorAll(".filter-btn");
-        const cards = document.querySelectorAll(".project-card");
-        const countEl = document.getElementById("visible-count");
+    <!-- Animations au scroll — état initial -->
+    <style>
+      [data-animate] {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.55s ease,
+          transform 0.55s ease;
+      }
+      [data-animate].is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
 
-        // Style du bouton actif vs inactif
-        const ACTIVE_CLASSES = [
-          "bg-accent",
-          "text-white",
-          "border-transparent",
-        ];
-        const INACTIVE_CLASSES = [
-          "border",
-          "border-slate-700",
-          "text-slate-400",
-        ];
-
-        function setActive(btn) {
-          buttons.forEach((b) => {
-            b.classList.remove(...ACTIVE_CLASSES);
-            b.classList.add(...INACTIVE_CLASSES);
-            b.classList.remove("active");
-          });
-          btn.classList.remove(...INACTIVE_CLASSES);
-          btn.classList.add(...ACTIVE_CLASSES, "active");
-        }
-
-        function filterCards(category) {
-          let visible = 0;
-          cards.forEach((card) => {
-            const match =
-              category === "all" || card.dataset.category === category;
-            if (match) {
-              // Afficher : retirer hidden, déclencher l'animation
-              card.style.display = "";
-              // Petit délai pour que la transition CSS s'applique
-              requestAnimationFrame(() => {
-                card.style.opacity = "1";
-                card.style.transform = "translateY(0)";
-              });
-              visible++;
-            } else {
-              // Masquer avec animation
-              card.style.opacity = "0";
-              card.style.transform = "translateY(8px)";
-              // Après la transition, retirer du flux
-              setTimeout(() => {
-                if (card.style.opacity === "0") card.style.display = "none";
-              }, 250);
-            }
-          });
-          countEl.textContent = visible;
-        }
-
-        // Initialisation : préparer les transitions CSS inline
-        cards.forEach((card) => {
-          card.style.transition = "opacity 0.25s ease, transform 0.25s ease";
-          card.style.opacity = "1";
-          card.style.transform = "translateY(0)";
-        });
-
-        // Écouter les clics sur chaque bouton
-        buttons.forEach((btn) => {
-          btn.addEventListener("click", () => {
-            const filter = btn.dataset.filter;
-            setActive(btn);
-            filterCards(filter);
-          });
-        });
-      })();
-    </script>
+    <!-- Point d'entrée JS de cette page -->
+    <script type="module" src="js/lister-projets.js"></script>
   </body>
 </html>

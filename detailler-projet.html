@@ -1,347 +1,655 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- ── SEO ── -->
-  <title>Application E-commerce — Seydina Limamou Laye Yade · Développeur Full Stack</title>
-  <meta name="description"    content="Détail du projet Application E-commerce : plateforme complète Node.js, MongoDB, Express avec authentification JWT et tableau de bord admin." />
-  <meta name="keywords"       content="e-commerce, Node.js, MongoDB, Express, JWT, full stack, portfolio" />
-  <meta name="author"         content="Seydina Limamou Laye Yade" />
-  <meta name="robots"         content="index, follow" />
-  <link rel="canonical"       href="https://seydinalimamoulayeyade.github.io/fullStack_portfolio/detailler-projet.html" />
+    <!-- ── SEO ── -->
+    <title>
+      Application E-commerce — Seydina Limamou Laye Yade · Développeur Full
+      Stack
+    </title>
+    <meta
+      name="description"
+      content="Détail du projet Application E-commerce : plateforme complète Node.js, MongoDB, Express avec authentification JWT et tableau de bord admin."
+    />
+    <meta
+      name="keywords"
+      content="e-commerce, Node.js, MongoDB, Express, JWT, full stack, portfolio"
+    />
+    <meta name="author" content="Seydina Limamou Laye Yade" />
+    <meta name="robots" content="index, follow" />
+    <link
+      rel="canonical"
+      href="https://seydinalimamoulayeyade.github.io/fullStack_portfolio/detailler-projet.html"
+    />
 
-  <!-- ── Open Graph ── -->
-  <meta property="og:type"        content="article" />
-  <meta property="og:url"         content="https://seydinalimamoulayeyade.github.io/fullStack_portfolio/detailler-projet.html" />
-  <meta property="og:title"       content="Application E-commerce — Portfolio SLLY" />
-  <meta property="og:description" content="Plateforme e-commerce complète : Node.js, MongoDB, Express, JWT. Panier, auth, tableau de bord admin." />
-  <meta property="og:image"       content="https://seydinalimamoulayeyade.github.io/fullStack_portfolio/images/projet1.jpg" />
-  <meta property="og:locale"      content="fr_FR" />
-  <meta property="og:site_name"   content="Portfolio SLLY" />
+    <!-- ── Open Graph ── -->
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:url"
+      content="https://seydinalimamoulayeyade.github.io/fullStack_portfolio/detailler-projet.html"
+    />
+    <meta
+      property="og:title"
+      content="Application E-commerce — Portfolio SLLY"
+    />
+    <meta
+      property="og:description"
+      content="Plateforme e-commerce complète : Node.js, MongoDB, Express, JWT. Panier, auth, tableau de bord admin."
+    />
+    <meta
+      property="og:image"
+      content="https://seydinalimamoulayeyade.github.io/fullStack_portfolio/images/projet1.jpg"
+    />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="Portfolio SLLY" />
 
-  <!-- ── Twitter Card ── -->
-  <meta name="twitter:card"        content="summary_large_image" />
-  <meta name="twitter:title"       content="Application E-commerce — Portfolio SLLY" />
-  <meta name="twitter:description" content="Plateforme e-commerce complète : Node.js · MongoDB · JWT." />
-  <meta name="twitter:image"       content="https://seydinalimamoulayeyade.github.io/fullStack_portfolio/images/projet1.jpg" />
+    <!-- ── Twitter Card ── -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Application E-commerce — Portfolio SLLY"
+    />
+    <meta
+      name="twitter:description"
+      content="Plateforme e-commerce complète : Node.js · MongoDB · JWT."
+    />
+    <meta
+      name="twitter:image"
+      content="https://seydinalimamoulayeyade.github.io/fullStack_portfolio/images/projet1.jpg"
+    />
 
-  <!-- Tailwind CDN Play -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: { DEFAULT: '#1a1a2e', light: '#16213e' },
-            accent:  { DEFAULT: '#e94560', hover: '#c73652' },
-            surface: { DEFAULT: '#0f3460', light: '#1a4a8a' },
-            muted:   '#94a3b8',
-          },
-          fontFamily: {
-            sans: ['Inter', 'system-ui', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace'],
+    <!-- Tailwind CDN Play -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: { DEFAULT: "#1a1a2e", light: "#16213e" },
+              accent: { DEFAULT: "#e94560", hover: "#c73652" },
+              surface: { DEFAULT: "#0f3460", light: "#1a4a8a" },
+              muted: "#94a3b8",
+            },
+            fontFamily: {
+              sans: ["Inter", "system-ui", "sans-serif"],
+              mono: ["JetBrains Mono", "monospace"],
+            },
           },
         },
-      },
-    }
-  </script>
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+      };
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
 
-  <style type="text/tailwindcss">
-    @layer base {
-      html { scroll-behavior: smooth; }
-      body { @apply bg-primary text-slate-200 font-sans antialiased; }
-    }
-    @layer components {
-      .nav-link {
-        @apply text-slate-300 hover:text-accent transition-colors duration-200 text-sm font-medium;
+    <style type="text/tailwindcss">
+      @layer base {
+        html {
+          scroll-behavior: smooth;
+        }
+        body {
+          @apply bg-primary text-slate-200 font-sans antialiased;
+        }
       }
-      .nav-link-active {
-        @apply text-accent text-sm font-medium;
+      @layer components {
+        .nav-link {
+          @apply text-slate-300 hover:text-accent transition-colors duration-200 text-sm font-medium;
+        }
+        .nav-link-active {
+          @apply text-accent text-sm font-medium;
+        }
+        .btn-primary {
+          @apply inline-flex items-center gap-2 bg-accent hover:bg-accent-hover text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-colors duration-200;
+        }
+        .btn-outline {
+          @apply inline-flex items-center gap-2 border border-slate-600 hover:border-accent text-slate-300 hover:text-accent text-sm font-medium px-5 py-2.5 rounded-lg transition-colors duration-200;
+        }
+        .badge-tech {
+          @apply inline-block text-xs font-mono bg-primary bg-opacity-80 border border-slate-700 text-slate-300 px-2.5 py-1 rounded-md;
+        }
+        .info-row {
+          @apply flex items-start gap-3 py-3 border-b border-slate-800 last:border-0;
+        }
+        .info-label {
+          @apply text-slate-500 text-xs font-medium uppercase tracking-wider w-28 flex-shrink-0 pt-0.5;
+        }
+        .info-value {
+          @apply text-slate-200 text-sm;
+        }
+        .feature-item {
+          @apply flex items-start gap-3 text-sm text-slate-300;
+        }
       }
-      .btn-primary {
-        @apply inline-flex items-center gap-2 bg-accent hover:bg-accent-hover text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-colors duration-200;
-      }
-      .btn-outline {
-        @apply inline-flex items-center gap-2 border border-slate-600 hover:border-accent text-slate-300 hover:text-accent text-sm font-medium px-5 py-2.5 rounded-lg transition-colors duration-200;
-      }
-      .badge-tech {
-        @apply inline-block text-xs font-mono bg-primary bg-opacity-80 border border-slate-700 text-slate-300 px-2.5 py-1 rounded-md;
-      }
-      .info-row {
-        @apply flex items-start gap-3 py-3 border-b border-slate-800 last:border-0;
-      }
-      .info-label {
-        @apply text-slate-500 text-xs font-medium uppercase tracking-wider w-28 flex-shrink-0 pt-0.5;
-      }
-      .info-value {
-        @apply text-slate-200 text-sm;
-      }
-      .feature-item {
-        @apply flex items-start gap-3 text-sm text-slate-300;
-      }
-    }
-  </style>
-</head>
+    </style>
+  </head>
 
-<body class="min-h-screen flex flex-col">
-
-  <!-- ═══════════════════════════════════════════════
+  <body class="min-h-screen flex flex-col">
+    <!-- ═══════════════════════════════════════════════
        NAVIGATION
   ════════════════════════════════════════════════ -->
-  <nav class="sticky top-0 z-50 bg-primary bg-opacity-95 backdrop-blur border-b border-slate-800">
-    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-
-      <a href="index.html" class="font-mono text-accent font-medium text-sm tracking-wider">
-        &lt;SLLY /&gt;
-      </a>
-
-      <div class="hidden md:flex items-center gap-8">
-        <a href="index.html"             class="nav-link">Accueil</a>
-        <a href="lister-projets.html"    class="nav-link-active">Projets</a>
-        <a href="index.html#competences" class="nav-link">Compétences</a>
-        <a href="index.html#contact"     class="nav-link">Contact</a>
-      </div>
-
-      <a href="index.html#contact" class="btn-primary hidden md:inline-flex">
-        Me contacter
-      </a>
-
-      <!-- Menu mobile — bouton JS (feat 03) -->
-      <button
-        id="mobile-menu-toggle"
-        class="md:hidden p-2 text-slate-300 hover:text-accent transition-colors"
-        aria-label="Ouvrir le menu"
-        aria-expanded="false"
-        aria-controls="mobile-menu-panel"
+    <nav
+      class="sticky top-0 z-50 bg-primary bg-opacity-95 backdrop-blur border-b border-slate-800"
+    >
+      <div
+        class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between"
       >
-        <svg id="mobile-menu-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-        </svg>
-      </button>
-    </div>
+        <a
+          href="index.html"
+          class="font-mono text-accent font-medium text-sm tracking-wider"
+        >
+          &lt;Virtual Voyager /&gt;
+        </a>
 
-    <div id="mobile-menu-panel" class="hidden md:hidden border-t border-slate-800 bg-primary px-6 py-4 space-y-3">
-      <a href="index.html"             class="block nav-link">Accueil</a>
-      <a href="lister-projets.html"    class="block nav-link-active">Projets</a>
-      <a href="index.html#competences" class="block nav-link">Compétences</a>
-      <a href="index.html#contact"     class="block nav-link">Contact</a>
-      <a href="index.html#contact"     class="block btn-primary w-fit mt-2">Me contacter</a>
-    </div>
-  </nav>
-
-
-  <main class="flex-1 max-w-6xl mx-auto px-6 py-10 w-full">
-
-    <!-- FIL D'ARIANE + RETOUR -->
-    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
-      <nav aria-label="Fil d'Ariane" class="flex items-center gap-2 text-xs text-slate-500">
-        <a href="index.html" class="hover:text-accent transition-colors">Accueil</a>
-        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        <a href="lister-projets.html" class="hover:text-accent transition-colors">Projets</a>
-        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        <span id="breadcrumb-title" class="text-slate-300 truncate max-w-[160px]">Chargement…</span>
-      </nav>
-      <a href="lister-projets.html" class="inline-flex items-center gap-2 text-slate-400 hover:text-accent text-sm transition-colors group">
-        <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"/></svg>
-        Retour aux projets
-      </a>
-    </div>
-
-    <!-- LAYOUT DEUX COLONNES -->
-    <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
-
-      <!-- COLONNE GAUCHE -->
-      <aside class="lg:col-span-2 flex flex-col gap-6">
-
-        <!-- Image -->
-        <div class="relative rounded-2xl overflow-hidden border border-slate-700 group">
-          <img id="project-image"
-               src="" alt=""
-               class="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-500"/>
-          <div class="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent opacity-60"></div>
-          <span id="project-category-badge"
-                class="absolute top-3 left-3 inline-flex items-center gap-1.5 bg-blue-600 bg-opacity-90 text-white text-xs font-medium px-3 py-1.5 rounded-lg">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-            <span>—</span>
-          </span>
-          <span id="project-number"
-                class="absolute bottom-3 right-3 bg-primary bg-opacity-80 text-slate-300 text-xs px-2.5 py-1 rounded-md font-mono">—</span>
+        <div class="hidden md:flex items-center gap-8">
+          <a href="index.html" class="nav-link">Accueil</a>
+          <a href="lister-projets.html" class="nav-link-active">Projets</a>
+          <a href="index.html#competences" class="nav-link">Compétences</a>
+          <a href="index.html#contact" class="nav-link">Contact</a>
         </div>
 
-        <!-- Infos -->
-        <div class="bg-surface bg-opacity-30 border border-slate-700 rounded-2xl p-5">
-          <h3 class="text-slate-400 text-xs font-semibold uppercase tracking-widest mb-4">Informations</h3>
-          <div class="divide-y divide-slate-800">
-            <div class="info-row">
-              <span class="info-label">Date</span>
-              <span class="info-value flex items-center gap-2">
-                <svg class="w-3.5 h-3.5 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                <span id="info-date">—</span>
-              </span>
-            </div>
-            <div class="info-row">
-              <span class="info-label">Catégorie</span>
-              <span class="info-value flex items-center gap-2">
-                <svg class="w-3.5 h-3.5 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
-                <span id="info-category">—</span>
-              </span>
-            </div>
-            <div class="info-row">
-              <span class="info-label">Statut</span>
-              <span class="info-value flex items-center gap-2">
-                <span id="info-status-dot" class="inline-block w-2 h-2 rounded-full bg-slate-500 flex-shrink-0"></span>
-                <span id="info-status">—</span>
-              </span>
-            </div>
-            <div class="info-row">
-              <span class="info-label">Rôle</span>
-              <span id="info-role" class="info-value">—</span>
-            </div>
-            <div class="info-row">
-              <span class="info-label">Durée</span>
-              <span id="info-duration" class="info-value">—</span>
+        <a href="index.html#contact" class="btn-primary hidden md:inline-flex">
+          Me contacter
+        </a>
+
+        <!-- Menu mobile — bouton JS (feat 03) -->
+        <button
+          id="mobile-menu-toggle"
+          class="md:hidden p-2 text-slate-300 hover:text-accent transition-colors"
+          aria-label="Ouvrir le menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu-panel"
+        >
+          <svg
+            id="mobile-menu-icon"
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <div
+        id="mobile-menu-panel"
+        class="hidden md:hidden border-t border-slate-800 bg-primary px-6 py-4 space-y-3"
+      >
+        <a href="index.html" class="block nav-link">Accueil</a>
+        <a href="lister-projets.html" class="block nav-link-active">Projets</a>
+        <a href="index.html#competences" class="block nav-link">Compétences</a>
+        <a href="index.html#contact" class="block nav-link">Contact</a>
+        <a href="index.html#contact" class="block btn-primary w-fit mt-2"
+          >Me contacter</a
+        >
+      </div>
+    </nav>
+
+    <main class="flex-1 max-w-6xl mx-auto px-6 py-10 w-full">
+      <!-- FIL D'ARIANE + RETOUR -->
+      <div
+        class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8"
+      >
+        <nav
+          aria-label="Fil d'Ariane"
+          class="flex items-center gap-2 text-xs text-slate-500"
+        >
+          <a href="index.html" class="hover:text-accent transition-colors"
+            >Accueil</a
+          >
+          <svg
+            class="w-3 h-3"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+          <a
+            href="lister-projets.html"
+            class="hover:text-accent transition-colors"
+            >Projets</a
+          >
+          <svg
+            class="w-3 h-3"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+          <span
+            id="breadcrumb-title"
+            class="text-slate-300 truncate max-w-[160px]"
+            >Chargement…</span
+          >
+        </nav>
+        <a
+          href="lister-projets.html"
+          class="inline-flex items-center gap-2 text-slate-400 hover:text-accent text-sm transition-colors group"
+        >
+          <svg
+            class="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-200"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M7 16l-4-4m0 0l4-4m-4 4h18"
+            />
+          </svg>
+          Retour aux projets
+        </a>
+      </div>
+
+      <!-- LAYOUT DEUX COLONNES -->
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
+        <!-- COLONNE GAUCHE -->
+        <aside class="lg:col-span-2 flex flex-col gap-6">
+          <!-- Image -->
+          <div
+            class="relative rounded-2xl overflow-hidden border border-slate-700 group"
+          >
+            <img
+              id="project-image"
+              src=""
+              alt=""
+              class="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent opacity-60"
+            ></div>
+            <span
+              id="project-category-badge"
+              class="absolute top-3 left-3 inline-flex items-center gap-1.5 bg-blue-600 bg-opacity-90 text-white text-xs font-medium px-3 py-1.5 rounded-lg"
+            >
+              <svg
+                class="w-3.5 h-3.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                />
+              </svg>
+              <span>—</span>
+            </span>
+            <span
+              id="project-number"
+              class="absolute bottom-3 right-3 bg-primary bg-opacity-80 text-slate-300 text-xs px-2.5 py-1 rounded-md font-mono"
+              >—</span
+            >
+          </div>
+
+          <!-- Infos -->
+          <div
+            class="bg-surface bg-opacity-30 border border-slate-700 rounded-2xl p-5"
+          >
+            <h3
+              class="text-slate-400 text-xs font-semibold uppercase tracking-widest mb-4"
+            >
+              Informations
+            </h3>
+            <div class="divide-y divide-slate-800">
+              <div class="info-row">
+                <span class="info-label">Date</span>
+                <span class="info-value flex items-center gap-2">
+                  <svg
+                    class="w-3.5 h-3.5 text-accent flex-shrink-0"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    />
+                  </svg>
+                  <span id="info-date">—</span>
+                </span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Catégorie</span>
+                <span class="info-value flex items-center gap-2">
+                  <svg
+                    class="w-3.5 h-3.5 text-accent flex-shrink-0"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+                    />
+                  </svg>
+                  <span id="info-category">—</span>
+                </span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Statut</span>
+                <span class="info-value flex items-center gap-2">
+                  <span
+                    id="info-status-dot"
+                    class="inline-block w-2 h-2 rounded-full bg-slate-500 flex-shrink-0"
+                  ></span>
+                  <span id="info-status">—</span>
+                </span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Rôle</span>
+                <span id="info-role" class="info-value">—</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Durée</span>
+                <span id="info-duration" class="info-value">—</span>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Boutons -->
-        <div class="flex flex-col gap-3">
-          <a id="btn-demo" href="#" class="btn-primary justify-center">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-            Voir la démo en ligne
-          </a>
-          <a id="btn-github" href="https://github.com/seydinalimamoulayeyade" target="_blank" rel="noopener" class="btn-outline justify-center">
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.4-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.6 1.2 3.2.9.1-.7.4-1.2.7-1.5-2.5-.3-5.2-1.3-5.2-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.4 11.4 0 016 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.2 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.6 11.6 0 0023.5 12C23.5 5.7 18.3.5 12 .5z"/></svg>
-            Voir le code source
-          </a>
-        </div>
-
-      </aside>
-
-      <!-- COLONNE DROITE -->
-      <div class="lg:col-span-3 flex flex-col gap-8">
-
-        <!-- Titre -->
-        <div>
-          <div class="flex items-center gap-3 mb-3">
-            <span id="project-section-number" class="font-mono text-accent text-sm">— /</span>
-            <div class="h-px flex-1 bg-slate-800"></div>
+          <!-- Boutons -->
+          <div class="flex flex-col gap-3">
+            <a id="btn-demo" href="#" class="btn-primary justify-center">
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                />
+              </svg>
+              Voir la démo en ligne
+            </a>
+            <a
+              id="btn-github"
+              href="https://github.com/seydinalimamoulayeyade"
+              target="_blank"
+              rel="noopener"
+              class="btn-outline justify-center"
+            >
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.4-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.6 1.2 3.2.9.1-.7.4-1.2.7-1.5-2.5-.3-5.2-1.3-5.2-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.4 11.4 0 016 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.2 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.6 11.6 0 0023.5 12C23.5 5.7 18.3.5 12 .5z"
+                />
+              </svg>
+              Voir le code source
+            </a>
           </div>
-          <h1 id="project-title" class="text-3xl md:text-4xl font-bold text-white leading-tight">Chargement…</h1>
-          <p id="project-short-desc" class="mt-3 text-slate-400 leading-relaxed"></p>
-        </div>
+        </aside>
 
-        <!-- Description -->
-        <div class="bg-surface bg-opacity-30 border border-slate-700 rounded-2xl p-6">
-          <h2 class="text-white font-semibold text-base mb-4 flex items-center gap-2">
-            <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-            Description du projet
-          </h2>
-          <div id="project-description" class="space-y-3 text-slate-300 text-sm leading-relaxed"></div>
-        </div>
-
-        <!-- Fonctionnalités -->
-        <div class="bg-surface bg-opacity-30 border border-slate-700 rounded-2xl p-6">
-          <h2 class="text-white font-semibold text-base mb-5 flex items-center gap-2">
-            <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-            Fonctionnalités clés
-          </h2>
-          <div id="project-features" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
-        </div>
-
-        <!-- Stack -->
-        <div class="bg-surface bg-opacity-30 border border-slate-700 rounded-2xl p-6">
-          <h2 class="text-white font-semibold text-base mb-5 flex items-center gap-2">
-            <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
-            Stack technique
-          </h2>
-          <div class="mb-5">
-            <p class="text-slate-500 text-xs font-semibold uppercase tracking-widest mb-2.5">Front-end</p>
-            <div id="stack-frontend" class="flex flex-wrap gap-2"></div>
-          </div>
-          <div class="mb-5">
-            <p class="text-slate-500 text-xs font-semibold uppercase tracking-widest mb-2.5">Back-end</p>
-            <div id="stack-backend" class="flex flex-wrap gap-2"></div>
-          </div>
+        <!-- COLONNE DROITE -->
+        <div class="lg:col-span-3 flex flex-col gap-8">
+          <!-- Titre -->
           <div>
-            <p class="text-slate-500 text-xs font-semibold uppercase tracking-widest mb-2.5">Base de données & outils</p>
-            <div id="stack-tools" class="flex flex-wrap gap-2"></div>
+            <div class="flex items-center gap-3 mb-3">
+              <span
+                id="project-section-number"
+                class="font-mono text-accent text-sm"
+                >— /</span
+              >
+              <div class="h-px flex-1 bg-slate-800"></div>
+            </div>
+            <h1
+              id="project-title"
+              class="text-3xl md:text-4xl font-bold text-white leading-tight"
+            >
+              Chargement…
+            </h1>
+            <p
+              id="project-short-desc"
+              class="mt-3 text-slate-400 leading-relaxed"
+            ></p>
+          </div>
+
+          <!-- Description -->
+          <div
+            class="bg-surface bg-opacity-30 border border-slate-700 rounded-2xl p-6"
+          >
+            <h2
+              class="text-white font-semibold text-base mb-4 flex items-center gap-2"
+            >
+              <svg
+                class="w-4 h-4 text-accent"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
+              </svg>
+              Description du projet
+            </h2>
+            <div
+              id="project-description"
+              class="space-y-3 text-slate-300 text-sm leading-relaxed"
+            ></div>
+          </div>
+
+          <!-- Fonctionnalités -->
+          <div
+            class="bg-surface bg-opacity-30 border border-slate-700 rounded-2xl p-6"
+          >
+            <h2
+              class="text-white font-semibold text-base mb-5 flex items-center gap-2"
+            >
+              <svg
+                class="w-4 h-4 text-accent"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+              Fonctionnalités clés
+            </h2>
+            <div
+              id="project-features"
+              class="grid grid-cols-1 sm:grid-cols-2 gap-3"
+            ></div>
+          </div>
+
+          <!-- Stack -->
+          <div
+            class="bg-surface bg-opacity-30 border border-slate-700 rounded-2xl p-6"
+          >
+            <h2
+              class="text-white font-semibold text-base mb-5 flex items-center gap-2"
+            >
+              <svg
+                class="w-4 h-4 text-accent"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                />
+              </svg>
+              Stack technique
+            </h2>
+            <div class="mb-5">
+              <p
+                class="text-slate-500 text-xs font-semibold uppercase tracking-widest mb-2.5"
+              >
+                Front-end
+              </p>
+              <div id="stack-frontend" class="flex flex-wrap gap-2"></div>
+            </div>
+            <div class="mb-5">
+              <p
+                class="text-slate-500 text-xs font-semibold uppercase tracking-widest mb-2.5"
+              >
+                Back-end
+              </p>
+              <div id="stack-backend" class="flex flex-wrap gap-2"></div>
+            </div>
+            <div>
+              <p
+                class="text-slate-500 text-xs font-semibold uppercase tracking-widest mb-2.5"
+              >
+                Base de données & outils
+              </p>
+              <div id="stack-tools" class="flex flex-wrap gap-2"></div>
+            </div>
+          </div>
+
+          <!-- Appris -->
+          <div class="border border-slate-700 border-dashed rounded-2xl p-6">
+            <h2
+              class="text-white font-semibold text-base mb-4 flex items-center gap-2"
+            >
+              <svg
+                class="w-4 h-4 text-accent"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                />
+              </svg>
+              Ce que j'ai appris
+            </h2>
+            <ul
+              id="project-learned"
+              class="space-y-2 text-sm text-slate-400"
+            ></ul>
           </div>
         </div>
-
-        <!-- Appris -->
-        <div class="border border-slate-700 border-dashed rounded-2xl p-6">
-          <h2 class="text-white font-semibold text-base mb-4 flex items-center gap-2">
-            <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
-            Ce que j'ai appris
-          </h2>
-          <ul id="project-learned" class="space-y-2 text-sm text-slate-400"></ul>
-        </div>
-
       </div>
-    </div>
 
-    <!-- PROJETS SIMILAIRES -->
-    <section class="mt-16 pt-10 border-t border-slate-800">
-      <div class="flex items-end justify-between mb-6">
-        <div>
-          <h2 class="text-xl font-bold text-white">Projets similaires</h2>
-          <p class="text-slate-500 text-xs mt-1">D'autres réalisations qui pourraient vous intéresser</p>
+      <!-- PROJETS SIMILAIRES -->
+      <section class="mt-16 pt-10 border-t border-slate-800">
+        <div class="flex items-end justify-between mb-6">
+          <div>
+            <h2 class="text-xl font-bold text-white">Projets similaires</h2>
+            <p class="text-slate-500 text-xs mt-1">
+              D'autres réalisations qui pourraient vous intéresser
+            </p>
+          </div>
+          <a
+            href="lister-projets.html"
+            class="text-accent hover:underline text-sm font-medium hidden sm:block"
+            >Voir tous →</a
+          >
         </div>
-        <a href="lister-projets.html" class="text-accent hover:underline text-sm font-medium hidden sm:block">Voir tous →</a>
-      </div>
-      <div id="related-projects" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
-    </section>
+        <div
+          id="related-projects"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+        ></div>
+      </section>
+    </main>
 
-  </main>
-
-
-  <!-- ═══════════════════════════════════════════════
+    <!-- ═══════════════════════════════════════════════
        FOOTER
   ════════════════════════════════════════════════ -->
-  <footer class="border-t border-slate-800 py-8 mt-10">
-    <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <span class="font-mono text-accent text-sm">&lt;SLLY /&gt;</span>
-      <p class="text-slate-500 text-xs text-center">
-        &copy; 2025 Seydina Limamou Laye Yade — Tous droits réservés
-      </p>
-      <div class="flex gap-4">
-        <a href="https://github.com/seydinalimamoulayeyade" target="_blank" rel="noopener"
-           class="text-slate-500 hover:text-accent transition-colors" aria-label="GitHub">
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.4-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.6 1.2 3.2.9.1-.7.4-1.2.7-1.5-2.5-.3-5.2-1.3-5.2-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.4 11.4 0 016 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.2 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.6 11.6 0 0023.5 12C23.5 5.7 18.3.5 12 .5z"/>
-          </svg>
-        </a>
-        <a href="https://linkedin.com" target="_blank" rel="noopener"
-           class="text-slate-500 hover:text-accent transition-colors" aria-label="LinkedIn">
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M20.4 2H3.6A1.6 1.6 0 002 3.6v16.8A1.6 1.6 0 003.6 22h16.8a1.6 1.6 0 001.6-1.6V3.6A1.6 1.6 0 0020.4 2zM8 19H5V9h3v10zM6.5 7.7a1.8 1.8 0 110-3.6 1.8 1.8 0 010 3.6zM19 19h-3v-5.6c0-1.4-.5-2.4-1.8-2.4-1 0-1.6.7-1.8 1.3-.1.2-.1.5-.1.8V19h-3V9h3v1.4c.4-.7 1.3-1.6 3-1.6 2.2 0 3.7 1.4 3.7 4.5V19z"/>
-          </svg>
-        </a>
+    <footer class="border-t border-slate-800 py-8 mt-10">
+      <div
+        class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4"
+      >
+        <span class="font-mono text-accent text-sm"
+          >&lt;Virtual Voyager /&gt;</span
+        >
+        <p class="text-slate-500 text-xs text-center">
+          &copy; 2025 Seydina Limamou Laye Yade — Tous droits réservés
+        </p>
+        <div class="flex gap-4">
+          <a
+            href="https://github.com/seydinalimamoulayeyade"
+            target="_blank"
+            rel="noopener"
+            class="text-slate-500 hover:text-accent transition-colors"
+            aria-label="GitHub"
+          >
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.4-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.6 1.2 3.2.9.1-.7.4-1.2.7-1.5-2.5-.3-5.2-1.3-5.2-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.4 11.4 0 016 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.2 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.6 11.6 0 0023.5 12C23.5 5.7 18.3.5 12 .5z"
+              />
+            </svg>
+          </a>
+          <a
+            href="https://linkedin.com"
+            target="_blank"
+            rel="noopener"
+            class="text-slate-500 hover:text-accent transition-colors"
+            aria-label="LinkedIn"
+          >
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M20.4 2H3.6A1.6 1.6 0 002 3.6v16.8A1.6 1.6 0 003.6 22h16.8a1.6 1.6 0 001.6-1.6V3.6A1.6 1.6 0 0020.4 2zM8 19H5V9h3v10zM6.5 7.7a1.8 1.8 0 110-3.6 1.8 1.8 0 010 3.6zM19 19h-3v-5.6c0-1.4-.5-2.4-1.8-2.4-1 0-1.6.7-1.8 1.3-.1.2-.1.5-.1.8V19h-3V9h3v1.4c.4-.7 1.3-1.6 3-1.6 2.2 0 3.7 1.4 3.7 4.5V19z"
+              />
+            </svg>
+          </a>
+        </div>
       </div>
-    </div>
-  </footer>
+    </footer>
 
-  <!-- Animations au scroll — état initial -->
-  <style>
-    [data-animate] {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.55s ease, transform 0.55s ease;
-    }
-    [data-animate].is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
+    <!-- Animations au scroll — état initial -->
+    <style>
+      [data-animate] {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.55s ease,
+          transform 0.55s ease;
+      }
+      [data-animate].is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
 
-  <!-- Point d'entrée JS de cette page -->
-  <script type="module" src="js/detailler-projet.js"></script>
-
-</body>
+    <!-- Point d'entrée JS de cette page -->
+    <script type="module" src="js/detailler-projet.js"></script>
+  </body>
 </html>

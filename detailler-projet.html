@@ -19,13 +19,10 @@
     />
     <meta name="author" content="Seydina Limamou Laye Yade" />
     <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#1a1a2e" />
     <link
       rel="canonical"
       href="https://seydinalimamoulayeyade.github.io/fullStack_portfolio/detailler-projet.html"
     />
-
-    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
 
     <!-- ── Open Graph ── -->
     <meta property="og:type" content="article" />
@@ -45,8 +42,6 @@
       property="og:image"
       content="https://seydinalimamoulayeyade.github.io/fullStack_portfolio/images/projet1.jpg"
     />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="fr_FR" />
     <meta property="og:site_name" content="Portfolio SLLY" />
 
@@ -64,64 +59,6 @@
       name="twitter:image"
       content="https://seydinalimamoulayeyade.github.io/fullStack_portfolio/images/projet1.jpg"
     />
-
-    <!-- ── Données structurées (JSON-LD) ── -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebSite",
-            "@id": "https://seydinalimamoulayeyade.github.io/fullStack_portfolio/#website",
-            "name": "Portfolio SLLY",
-            "url": "https://seydinalimamoulayeyade.github.io/fullStack_portfolio/"
-          },
-          {
-            "@type": "Article",
-            "@id": "https://seydinalimamoulayeyade.github.io/fullStack_portfolio/detailler-projet.html#article",
-            "headline": "Application E-commerce — Portfolio SLLY",
-            "description": "Plateforme e-commerce complète : Node.js, MongoDB, Express, JWT. Panier, auth, tableau de bord admin.",
-            "image": "https://seydinalimamoulayeyade.github.io/fullStack_portfolio/images/projet1.jpg",
-            "inLanguage": "fr-FR",
-            "author": {
-              "@type": "Person",
-              "name": "Seydina Limamou Laye Yade"
-            },
-            "isPartOf": {
-              "@id": "https://seydinalimamoulayeyade.github.io/fullStack_portfolio/#website"
-            },
-            "mainEntityOfPage": {
-              "@type": "WebPage",
-              "@id": "https://seydinalimamoulayeyade.github.io/fullStack_portfolio/detailler-projet.html"
-            }
-          },
-          {
-            "@type": "BreadcrumbList",
-            "@id": "https://seydinalimamoulayeyade.github.io/fullStack_portfolio/detailler-projet.html#breadcrumb",
-            "itemListElement": [
-              {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Accueil",
-                "item": "https://seydinalimamoulayeyade.github.io/fullStack_portfolio/"
-              },
-              {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "Projets",
-                "item": "https://seydinalimamoulayeyade.github.io/fullStack_portfolio/lister-projets.html"
-              },
-              {
-                "@type": "ListItem",
-                "position": 3,
-                "name": "Application E-commerce",
-                "item": "https://seydinalimamoulayeyade.github.io/fullStack_portfolio/detailler-projet.html"
-              }
-            ]
-          }
-        ]
-      }
-    </script>
 
     <!-- Tailwind CDN Play -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -205,7 +142,7 @@
           href="index.html"
           class="font-mono text-accent font-medium text-sm tracking-wider"
         >
-          &lt;Virtual Voyager /&gt;
+          &lt;SLLY /&gt;
         </a>
 
         <div class="hidden md:flex items-center gap-8">
@@ -219,12 +156,16 @@
           Me contacter
         </a>
 
-        <!-- Menu mobile -->
-        <label
-          for="mobile-menu"
-          class="md:hidden cursor-pointer p-2 text-slate-300 hover:text-accent"
+        <!-- Menu mobile — bouton JS (feat 03) -->
+        <button
+          id="mobile-menu-toggle"
+          class="md:hidden p-2 text-slate-300 hover:text-accent transition-colors"
+          aria-label="Ouvrir le menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu-panel"
         >
           <svg
+            id="mobile-menu-icon"
             class="w-5 h-5"
             fill="none"
             stroke="currentColor"
@@ -237,12 +178,12 @@
               d="M4 6h16M4 12h16M4 18h16"
             />
           </svg>
-        </label>
+        </button>
       </div>
 
-      <input type="checkbox" id="mobile-menu" class="hidden peer" />
       <div
-        class="hidden peer-checked:block md:hidden border-t border-slate-800 bg-primary px-6 py-4 space-y-3"
+        id="mobile-menu-panel"
+        class="hidden md:hidden border-t border-slate-800 bg-primary px-6 py-4 space-y-3"
       >
         <a href="index.html" class="block nav-link">Accueil</a>
         <a href="lister-projets.html" class="block nav-link-active">Projets</a>
@@ -449,9 +390,7 @@
           <!-- Boutons d'action -->
           <div class="flex flex-col gap-3">
             <a
-              href="demos/e-com/index.html"
-              target="_blank"
-              rel="noopener"
+              href="demos/ecommerce/index.html"
               class="btn-primary justify-center"
             >
               <svg
@@ -996,11 +935,9 @@
       <div
         class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4"
       >
-        <span class="font-mono text-accent text-sm"
-          >&lt;Virtual Voyager /&gt;</span
-        >
+        <span class="font-mono text-accent text-sm">&lt;SLLY /&gt;</span>
         <p class="text-slate-500 text-xs text-center">
-          &copy; 2026 Seydina Limamou Laye Yade — Tous droits réservés
+          &copy; 2025 Seydina Limamou Laye Yade — Tous droits réservés
         </p>
         <div class="flex gap-4">
           <a
@@ -1032,5 +969,23 @@
         </div>
       </div>
     </footer>
+
+    <!-- Animations au scroll — état initial -->
+    <style>
+      [data-animate] {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.55s ease,
+          transform 0.55s ease;
+      }
+      [data-animate].is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+
+    <!-- Point d'entrée JS de cette page -->
+    <script type="module" src="js/detailler-projet.js"></script>
   </body>
 </html>

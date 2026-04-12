@@ -1,4 +1,10 @@
-const PHRASES = ["Cloud | DevOps | Systèmes d'information | Développement web"];
+const PHRASES = [
+  "Développeur Full Stack",
+  "Développeur Node.js & React",
+  "Passionné Cloud & DevOps",
+  "Ingénieur logiciel · Dakar",
+  "Disponible pour missions",
+];
 
 const CONFIG = {
   typingSpeed: 75,

@@ -21,7 +21,7 @@
       href="https://seydinalimamoulayeyade.github.io/fullStack_portfolio/index.html"
     />
 
-    <!-- ── Open Graph (Facebook, LinkedIn, WhatsApp) ── -->
+    <!-- ── Open Graph ── -->
     <meta property="og:type" content="website" />
     <meta
       property="og:url"
@@ -40,7 +40,7 @@
       content="https://seydinalimamoulayeyade.github.io/fullStack_portfolio/images/og-preview.jpg"
     />
     <meta property="og:locale" content="fr_FR" />
-    <meta property="og:site_name" content="Portfolio Virtual Voyager" />
+    <meta property="og:site_name" content="Portfolio SLLY" />
 
     <!-- ── Twitter Card ── -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -57,7 +57,7 @@
       content="https://seydinalimamoulayeyade.github.io/fullStack_portfolio/images/og-preview.jpg"
     />
 
-    <!-- Tailwind CDN Play (statique, sans build) -->
+    <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -77,7 +77,9 @@
         },
       };
     </script>
+
     <!-- Google Fonts -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
@@ -132,15 +134,13 @@
       <div
         class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between"
       >
-        <!-- Logo / Nom -->
         <a
           href="index.html"
           class="font-mono text-accent font-medium text-sm tracking-wider"
         >
-          &lt;Virtual Voyager /&gt;
+          &lt;SLLY /&gt;
         </a>
 
-        <!-- Liens desktop -->
         <div class="hidden md:flex items-center gap-8">
           <a href="index.html" class="nav-link-active">Accueil</a>
           <a href="lister-projets.html" class="nav-link">Projets</a>
@@ -148,12 +148,10 @@
           <a href="#contact" class="nav-link">Contact</a>
         </div>
 
-        <!-- CTA -->
         <a href="#contact" class="btn-primary hidden md:inline-flex">
           Me contacter
         </a>
 
-        <!-- Menu mobile — bouton JS (feat 03) -->
         <button
           id="mobile-menu-toggle"
           class="md:hidden p-2 text-slate-300 hover:text-accent transition-colors"
@@ -178,7 +176,6 @@
         </button>
       </div>
 
-      <!-- Panneau menu mobile -->
       <div
         id="mobile-menu-panel"
         class="hidden md:hidden border-t border-slate-800 bg-primary px-6 py-4 space-y-3"
@@ -196,7 +193,6 @@
   ════════════════════════════════════════════════ -->
     <section class="max-w-6xl mx-auto px-6 py-20 md:py-28" data-animate>
       <div class="flex flex-col md:flex-row items-center gap-12">
-        <!-- Texte -->
         <div class="flex-1 text-center md:text-left">
           <span class="font-mono text-accent text-sm tracking-widest uppercase"
             >Disponible pour missions</span
@@ -210,18 +206,28 @@
           </h1>
 
           <p class="mt-3 text-xl text-slate-300 font-medium h-7">
-            <span id="typewriter-text"
-              >Cloud | DevOps | Systèmes d'information | Développement web</span
+            <span id="typewriter-text">Développeur Full Stack</span
             ><span id="typewriter-cursor" aria-hidden="true"></span>
           </p>
 
           <p class="mt-5 text-slate-400 leading-relaxed max-w-xl">
-            Je suis un ingénieur logiciel passionné par le cloud, le devops et
-            les systèmes d'information. Spécialisé dans le développement web et
-            mobile. Je suis disponible pour toutes missions en freelance.
+            Passionné par la création d'applications web modernes, robustes et
+            accessibles. Je conçois des solutions complètes — du back-end à
+            l'interface utilisateur — avec un souci constant de qualité et
+            d'expérience utilisateur.
           </p>
 
-          <!-- CTAs -->
+          <div
+            class="mt-6 flex flex-wrap gap-2 justify-center md:justify-start"
+          >
+            <span class="badge-tech">HTML5</span>
+            <span class="badge-tech">CSS3</span>
+            <span class="badge-tech">JavaScript</span>
+            <span class="badge-tech">Node.js</span>
+            <span class="badge-tech">MongoDB</span>
+            <span class="badge-tech">React</span>
+          </div>
+
           <div
             class="mt-8 flex flex-wrap gap-4 justify-center md:justify-start"
           >
@@ -241,7 +247,7 @@
                 />
               </svg>
             </a>
-            <!-- <a href="#" class="btn-outline">
+            <a href="#" class="btn-outline">
               Télécharger CV
               <svg
                 class="w-4 h-4"
@@ -256,10 +262,9 @@
                   d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
                 />
               </svg>
-            </a> -->
+            </a>
           </div>
 
-          <!-- Liens sociaux -->
           <div class="mt-8 flex gap-5 justify-center md:justify-start">
             <a
               href="https://github.com/seydinalimamoulayeyade"
@@ -275,7 +280,7 @@
               GitHub
             </a>
             <a
-              href="https://linkedin.com/in/limamou-laye"
+              href="https://www.linkedin.com/in/limamou-laye"
               target="_blank"
               rel="noopener"
               class="text-slate-400 hover:text-accent transition-colors duration-200 flex items-center gap-2 text-sm"
@@ -287,36 +292,20 @@
               </svg>
               LinkedIn
             </a>
-            <a
-              href="https://medium.com/@seydinalimamoulayeyade"
-              target="_blank"
-              rel="noopener"
-              class="text-slate-400 hover:text-accent transition-colors duration-200 flex items-center gap-2 text-sm"
-            >
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path
-                  d="M21.4,17.9h2.8v2.8h-2.8ZM12.3,17.9h2.8v2.8h-2.8ZM17.9,12.3h2.8v2.8h-2.8ZM12.3,12.3h2.8v2.8h-2.8ZM17.9,6.7h2.8v2.8h-2.8ZM12.3,6.7h2.8v2.8h-2.8ZM6.7,12.3h2.8v2.8H6.7ZM6.7,17.9h2.8v2.8H6.7ZM6.7,6.7h2.8v2.8H6.7ZM12.3,6.7h2.8v2.8h-2.8Z"
-                />
-              </svg>
-              Medium
-            </a>
           </div>
         </div>
 
-        <!-- Avatar / Photo -->
+        <!-- Avatar -->
         <div class="flex-shrink-0">
           <div class="relative">
-            <!-- Cercle décoratif -->
             <div
               class="absolute -inset-3 rounded-full border-2 border-accent border-dashed opacity-30"
             ></div>
-            <!-- Initiales (remplacer par une vraie photo) -->
             <div
               class="w-52 h-52 rounded-full bg-surface border-2 border-slate-700 flex items-center justify-center"
             >
-              <span class="text-5xl font-bold text-slate-300">SLLY</span>
+              <span class="text-5xl font-bold text-slate-300">SY</span>
             </div>
-            <!-- Badge statut -->
             <div
               class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-accent text-white text-xs font-medium px-3 py-1 rounded-full whitespace-nowrap"
             >
@@ -677,7 +666,7 @@
             Envoyer un email
           </a>
           <a
-            href="https://linkedin.com/in/limamou-laye"
+            href="https://www.linkedin.com/in/limamou-laye"
             target="_blank"
             rel="noopener"
             class="btn-outline justify-center"
@@ -691,7 +680,6 @@
           </a>
         </div>
 
-        <!-- Infos de contact rapides -->
         <div
           class="flex flex-col sm:flex-row gap-6 justify-center text-sm text-slate-400"
         >
@@ -733,23 +721,19 @@
             </svg>
             <a
               href="mailto:seydinalimamoulayeyade@gmail.com"
-              class="__cf_email__"
-              data-cfemail="2053455944494e41604558414d504c450e434f4d"
-              >seydinalimamoulayeyade@gmail.com</a
+              class="hover:text-accent transition-colors"
             >
+              seydinalimamoulayeyade@gmail.com
+            </a>
           </span>
         </div>
       </div>
     </section>
 
     <!-- ═══════════════════════════════════════════════
-       JS — v2.1.0 — Architecture modulaire
-       Styles CSS des animations (conservés ici car
-       nécessaires avant le rendu pour éviter le flash)
+       STYLES DES ANIMATIONS
   ════════════════════════════════════════════════ -->
-
     <style>
-      /* Animations au scroll — état initial */
       [data-animate] {
         opacity: 0;
         transform: translateY(24px);
@@ -761,7 +745,6 @@
         opacity: 1;
         transform: translateY(0);
       }
-      /* Curseur typewriter */
       #typewriter-cursor {
         display: inline-block;
         width: 2px;
@@ -782,7 +765,7 @@
       }
     </style>
 
-    <!-- Point d'entrée JS de cette page -->
+    <!-- Point d'entrée JS -->
     <script type="module" src="js/index.js"></script>
 
     <!-- ═══════════════════════════════════════════════
@@ -792,12 +775,10 @@
       <div
         class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4"
       >
-        <span class="font-mono text-accent text-sm"
-          >&lt;Virtual Voyager /&gt;</span
-        >
+        <span class="font-mono text-accent text-sm">&lt;SLLY /&gt;</span>
 
         <p class="text-slate-500 text-xs text-center">
-          &copy; 2026 Seydina Limamou Laye Yade — Tous droits réservés
+          &copy; 2025 Seydina Limamou Laye Yade — Tous droits réservés
         </p>
 
         <div class="flex gap-4">
@@ -815,7 +796,7 @@
             </svg>
           </a>
           <a
-            href="https://linkedin.com/in/limamou-laye"
+            href="https://www.linkedin.com/in/limamou-laye"
             target="_blank"
             rel="noopener"
             class="text-slate-500 hover:text-accent transition-colors"
@@ -823,8 +804,7 @@
           >
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
               <path
-                d="M20.4 2H3.6A1.6 1.6 0 002 3.6v16.8A1.6 1.6 0 003.6 22h16.8a1.6 1.6 0 001.6-1.6V3.6A1.6 1.6 0 0020.4 2zM8 19H5V9h3v10zM6.5 7.7a1.8 1.8 0 110-3.6 1.8 1.8 0 010 3.6zM19 19h-3v-5.6c0-1.4-.5-2.4-1.8-2.4-1 0-1.6.7-1.8 1
-            .6 2.2v3.3c0 .3.2.7.8.6A11.6 11.6 0 0023.5 12C23.5 5.7 18.3.5 12 .5z"
+                d="M20.4 2H3.6A1.6 1.6 0 002 3.6v16.8A1.6 1.6 0 003.6 22h16.8a1.6 1.6 0 001.6-1.6V3.6A1.6 1.6 0 0020.4 2zM8 19H5V9h3v10zM6.5 7.7a1.8 1.8 0 110-3.6 1.8 1.8 0 010 3.6zM19 19h-3v-5.6c0-1.4-.5-2.4-1.8-2.4-1 0-1.6.7-1.8 1.3-.1.2-.1.5-.1.8V19h-3V9h3v1.4c.4-.7 1.3-1.6 3-1.6 2.2 0 3.7 1.4 3.7 4.5V19z"
               />
             </svg>
           </a>

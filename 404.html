@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Page introuvable — Seydina Limamou Laye Yade</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: { DEFAULT: "#1a1a2e" },
+              accent: { DEFAULT: "#e94560" },
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body
+    class="bg-primary min-h-screen flex items-center justify-center font-sans text-slate-200 antialiased"
+  >
+    <div class="text-center px-6">
+      <p class="font-mono text-accent text-sm tracking-widest mb-4">404</p>
+      <h1 class="text-3xl font-bold text-white mb-3">Page introuvable</h1>
+      <p class="text-slate-400 mb-8 max-w-sm mx-auto">
+        Cette page n'existe pas ou a été déplacée.
+      </p>
+      <a
+        href="/"
+        class="inline-flex items-center gap-2 bg-accent hover:bg-red-700 text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-colors"
+      >
+        ← Retour à l'accueil
+      </a>
+    </div>
+  </body>
+</html>

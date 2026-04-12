@@ -1,4 +1,4 @@
-import "../js/main.js";
+import "./main.js";
 import { initTypewriter } from "./modules/typewriter.js";
 
 // Initialisation du typewriter après le chargement du DOM

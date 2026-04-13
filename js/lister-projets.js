@@ -1,17 +1,14 @@
 import "./main.js";
 import { initFilter } from "./modules/filter.js";
-import { injectStoredProjects } from "./modules/render-stored-projects.js";
+import { initProjectsList } from "./modules/projects-list.js";
 
-function initPage() {
-  // 1. Injecter les projets du localStorage dans la grille AVANT les filtres
-  injectStoredProjects();
-
-  // 2. Initialiser les filtres (ils voient maintenant toutes les cartes)
-  initFilter();
+function init() {
+  initProjectsList(); // injecte les cartes + déclenche 'projects-list:ready'
+  initFilter(); // se branche sur 'projects-list:ready' si cartes pas encore là
 }
 
 if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initPage);
+  document.addEventListener("DOMContentLoaded", init);
 } else {
-  initPage();
+  init();
 }

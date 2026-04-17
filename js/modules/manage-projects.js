@@ -1,5 +1,6 @@
 import { deleteProject, getDeletedIds } from "./delete-project.js";
 import { getStoredProjects } from "./form-admin.js";
+import { PROJECTS } from "./projects.js";
 
 /**
  * Construit le HTML d'une ligne de projet dans le tableau admin.
@@ -63,10 +64,10 @@ function buildRow(project, isStored) {
 /**
  * Affiche un message de confirmation inline avant suppression.
  * @param {HTMLButtonElement} btn
- * @param {string}            title
+ * @param {string}            _title
  * @param {Function}          onConfirm
  */
-function showInlineConfirm(btn, title, onConfirm) {
+function showInlineConfirm(btn, _title, onConfirm) {
   // Remplacer le bouton par un mini-dialogue inline
   const row = btn.closest(".manage-row");
   if (!row) return;

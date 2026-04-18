@@ -129,18 +129,20 @@
        NAVIGATION
   ════════════════════════════════════════════════ -->
     <nav
-      class="sticky top-0 z-50 border-b border-slate-800/80 bg-primary/90 backdrop-blur-xl"
+      class="sticky top-0 z-50 border-b border-slate-800/80 bg-primary/95 backdrop-blur-xl"
     >
       <div
         class="max-w-6xl mx-auto px-6 h-[72px] flex items-center justify-between"
       >
+        <!-- Logo -->
         <a
           href="index.html"
-          class="font-mono text-accent font-semibold text-sm tracking-[0.2em] hover:opacity-90 transition-opacity"
+          class="font-mono text-accent font-semibold text-sm tracking-[0.2em]"
         >
           &lt;SLLY /&gt;
         </a>
 
+        <!-- Navigation desktop -->
         <div class="hidden md:flex items-center gap-2">
           <a
             href="index.html"
@@ -148,18 +150,21 @@
           >
             Accueil
           </a>
+
           <a
-            href="lister-projets.html"
+            href="#about"
             class="inline-flex items-center px-4 py-2 rounded-full text-slate-300 hover:text-accent hover:bg-white/5 text-sm font-medium transition-all duration-200"
           >
-            Projets
+            À propos
           </a>
+
           <a
             href="#competences"
             class="inline-flex items-center px-4 py-2 rounded-full text-slate-300 hover:text-accent hover:bg-white/5 text-sm font-medium transition-all duration-200"
           >
             Compétences
           </a>
+
           <a
             href="#contact"
             class="inline-flex items-center px-4 py-2 rounded-full text-slate-300 hover:text-accent hover:bg-white/5 text-sm font-medium transition-all duration-200"
@@ -168,10 +173,12 @@
           </a>
         </div>
 
+        <!-- CTA -->
         <a href="#contact" class="btn-primary hidden md:inline-flex">
           Me contacter
         </a>
 
+        <!-- Mobile button -->
         <button
           id="mobile-menu-toggle"
           class="md:hidden p-2.5 rounded-lg text-slate-300 hover:text-accent hover:bg-white/5 transition-colors"
@@ -196,6 +203,7 @@
         </button>
       </div>
 
+      <!-- Mobile menu -->
       <div
         id="mobile-menu-panel"
         class="hidden md:hidden border-t border-slate-800 bg-primary/95 backdrop-blur-xl px-6 py-5 space-y-3"
@@ -206,24 +214,28 @@
         >
           Accueil
         </a>
+
         <a
-          href="lister-projets.html"
+          href="#about"
           class="block rounded-xl text-slate-300 hover:text-accent hover:bg-white/5 px-4 py-3 text-sm font-medium transition-colors"
         >
-          Projets
+          À propos
         </a>
+
         <a
           href="#competences"
           class="block rounded-xl text-slate-300 hover:text-accent hover:bg-white/5 px-4 py-3 text-sm font-medium transition-colors"
         >
           Compétences
         </a>
+
         <a
           href="#contact"
           class="block rounded-xl text-slate-300 hover:text-accent hover:bg-white/5 px-4 py-3 text-sm font-medium transition-colors"
         >
           Contact
         </a>
+
         <a href="#contact" class="inline-flex btn-primary mt-2">
           Me contacter
         </a>
@@ -400,6 +412,7 @@
        À PROPOS / PARCOURS
   ════════════════════════════════════════════════ -->
     <section
+      id="about"
       class="max-w-6xl mx-auto px-6 py-16 border-t border-slate-800"
       data-animate
     >

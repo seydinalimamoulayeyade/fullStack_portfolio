@@ -215,16 +215,6 @@ function renderImagePreview(preview, src, label = "") {
   `;
 }
 
-function fileToDataUrl(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = () => reject(new Error("Impossible de lire l'image."));
-    reader.readAsDataURL(file);
-  });
-}
-
 function setupImagePreview(existingImage = null) {
   const input = document.getElementById("image");
   if (!input) {
@@ -268,7 +258,7 @@ function setupImagePreview(existingImage = null) {
     }
 
     try {
-      const dataUrl = await fileToDataUrl(file);
+      const dataUrl = await compressImage(file);
       renderImagePreview(preview, dataUrl, `Nouvelle image : ${file.name}`);
     } catch (error) {
       console.error(error);
@@ -299,7 +289,11 @@ async function collectFormData(form, editId, loadedProject, selectedFile) {
   let image = loadedProject?.image || null;
 
   if (selectedFile) {
-    image = await fileToDataUrl(selectedFile);
+    image = await compressImage(selectedFile, {
+      maxWidth: 1200,
+      maxHeight: 800,
+      quality: 0.7,
+    });
   }
 
   return {

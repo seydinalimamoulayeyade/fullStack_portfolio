@@ -134,7 +134,7 @@
         <div class="flex items-center gap-4">
           <a
             href="index.html"
-            class="font-mono text-accent font-semibold text-sm tracking-[0.2em] hover:opacity-90 transition-opacity"
+            class="font-mono text-accent font-semibold text-sm tracking-[0.2em]"
           >
             &lt;SLLY /&gt;
           </a>
@@ -162,52 +162,27 @@
           </a>
         </div>
 
-        <!-- Navigation desktop -->
+        <!-- Nav centrale -->
         <div class="hidden md:flex items-center gap-2">
-          <a
-            href="index.html"
-            class="inline-flex items-center px-4 py-2 rounded-full text-slate-300 hover:text-accent hover:bg-white/5 text-sm font-medium transition-all duration-200"
-          >
-            Accueil
-          </a>
-
-          <a
-            href="lister-projets.html"
+          <span
             class="inline-flex items-center px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-medium border border-accent/20"
           >
             Projets
-          </a>
-
-          <a
-            href="index.html#competences"
-            class="inline-flex items-center px-4 py-2 rounded-full text-slate-300 hover:text-accent hover:bg-white/5 text-sm font-medium transition-all duration-200"
-          >
-            Compétences
-          </a>
-
-          <a
-            href="index.html#contact"
-            class="inline-flex items-center px-4 py-2 rounded-full text-slate-300 hover:text-accent hover:bg-white/5 text-sm font-medium transition-all duration-200"
-          >
-            Contact
-          </a>
+          </span>
         </div>
 
-        <!-- CTA desktop -->
+        <!-- CTA -->
         <a href="index.html#contact" class="btn-primary hidden md:inline-flex">
           Me contacter
         </a>
 
-        <!-- Bouton mobile -->
+        <!-- Mobile -->
         <button
           id="mobile-menu-toggle"
           class="md:hidden p-2.5 rounded-lg text-slate-300 hover:text-accent hover:bg-white/5 transition-colors"
           aria-label="Ouvrir le menu"
-          aria-expanded="false"
-          aria-controls="mobile-menu-panel"
         >
           <svg
-            id="mobile-menu-icon"
             class="w-5 h-5"
             fill="none"
             stroke="currentColor"
@@ -223,45 +198,23 @@
         </button>
       </div>
 
-      <!-- Menu mobile -->
+      <!-- Mobile menu -->
       <div
         id="mobile-menu-panel"
         class="hidden md:hidden border-t border-slate-800 bg-primary/95 backdrop-blur-xl px-6 py-5 space-y-3"
       >
         <a
           href="index.html"
-          class="block rounded-xl text-slate-300 hover:text-accent hover:bg-white/5 px-4 py-3 text-sm font-medium transition-colors"
-        >
-          Accueil
-        </a>
-
-        <a
-          href="lister-projets.html"
-          class="block rounded-xl bg-accent/10 border border-accent/20 text-accent px-4 py-3 text-sm font-medium"
-        >
-          Projets
-        </a>
-
-        <a
-          href="index.html#competences"
-          class="block rounded-xl text-slate-300 hover:text-accent hover:bg-white/5 px-4 py-3 text-sm font-medium transition-colors"
-        >
-          Compétences
-        </a>
-
-        <a
-          href="index.html#contact"
-          class="block rounded-xl text-slate-300 hover:text-accent hover:bg-white/5 px-4 py-3 text-sm font-medium transition-colors"
-        >
-          Contact
-        </a>
-
-        <a
-          href="index.html"
-          class="block rounded-xl text-slate-400 hover:text-accent hover:bg-white/5 px-4 py-3 text-sm transition-colors"
+          class="block rounded-xl text-slate-300 hover:text-accent hover:bg-white/5 px-4 py-3 text-sm font-medium"
         >
           ← Retour à l’accueil
         </a>
+
+        <span
+          class="block rounded-xl bg-accent/10 border border-accent/20 text-accent px-4 py-3 text-sm font-medium"
+        >
+          Projets
+        </span>
 
         <a href="index.html#contact" class="inline-flex btn-primary mt-2">
           Me contacter

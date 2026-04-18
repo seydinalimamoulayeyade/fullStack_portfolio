@@ -32,16 +32,29 @@ const CATEGORY_BADGE = {
 };
 
 /**
+ * Échappe le HTML pour éviter les injections.
+ * @param {string} str
+ * @returns {string}
+ */
+function escapeHTML(str = "") {
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+/**
  * Génère le HTML d'une carte projet.
  * @param {object} project
- * @param {number} index - position dans la liste filtrée (pour le numéro #)
- * @returns {string} HTML de l'article
+ * @param {number} index - position dans la liste filtrée
+ * @returns {string}
  */
 function buildCard(project, index) {
   const cat = CATEGORY_BADGE[project.category] ?? CATEGORY_BADGE.autre;
   const num = String(index + 1).padStart(2, "0");
 
-  // Formater la date lisible si format YYYY-MM
   let dateLabel = project.date ?? "";
   if (/^\d{4}-\d{2}$/.test(dateLabel)) {
     const [y, m] = dateLabel.split("-");
@@ -64,8 +77,8 @@ function buildCard(project, index) {
 
   const imageBlock = project.image
     ? `<img
-         src="${project.image}"
-         alt="Capture du projet ${project.title}"
+         src="${escapeHTML(project.image)}"
+         alt="Capture du projet ${escapeHTML(project.title)}"
          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
        />`
     : `<div class="w-full h-full bg-surface flex items-center justify-center">
@@ -76,14 +89,14 @@ function buildCard(project, index) {
 
   const tagsHtml = (project.tags ?? [])
     .slice(0, 4)
-    .map((t) => `<span class="badge-tech">${t}</span>`)
+    .map((tag) => `<span class="badge-tech">${escapeHTML(tag)}</span>`)
     .join("");
 
   return `
     <article
       class="card-project group project-card"
-      data-category="${project.category ?? "autre"}"
-      data-id="${project.id}"
+      data-category="${escapeHTML(project.category ?? "autre")}"
+      data-id="${escapeHTML(project.id)}"
     >
       <div class="relative overflow-hidden h-48">
         ${imageBlock}
@@ -92,25 +105,27 @@ function buildCard(project, index) {
           <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="${cat.icon}"/>
           </svg>
-          ${cat.label}
+          ${escapeHTML(cat.label)}
         </span>
         <span class="absolute top-3 right-3 bg-primary bg-opacity-80 text-slate-300 text-xs px-2 py-1 rounded-md font-mono">
-          ${dateLabel}
+          ${escapeHTML(dateLabel)}
         </span>
       </div>
 
       <div class="p-5 flex flex-col gap-3">
         <div>
           <h2 class="text-white font-semibold text-base group-hover:text-accent transition-colors leading-snug">
-            ${project.title}
+            ${escapeHTML(project.title)}
           </h2>
-          <p class="text-slate-400 text-xs mt-1.5 leading-relaxed">${project.shortDesc ?? ""}</p>
+          <p class="text-slate-400 text-xs mt-1.5 leading-relaxed">
+            ${escapeHTML(project.shortDesc ?? "")}
+          </p>
         </div>
 
         <div class="flex flex-wrap gap-1.5">${tagsHtml}</div>
 
         <div class="pt-1 border-t border-slate-700 flex items-center justify-between">
-          <a href="detailler-projet.html?id=${project.id}"
+          <a href="detailler-projet.html?id=${encodeURIComponent(project.id)}"
              class="inline-flex items-center gap-1.5 text-accent hover:underline text-sm font-medium">
             Voir le détail
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -131,11 +146,14 @@ function buildCard(project, index) {
 export function getVisibleProjects() {
   const deletedIds = getDeletedIds();
   const stored = getStoredProjects();
-  return [...PROJECTS, ...stored].filter((p) => !deletedIds.includes(p.id));
+
+  return [...PROJECTS, ...stored].filter((project) => {
+    return !deletedIds.includes(project.id);
+  });
 }
 
 /**
- * Met à jour le compteur affiché dans les filtres et le header.
+ * Met à jour le compteur affiché dans le header.
  * @param {number} count
  */
 function updateCounter(count) {
@@ -144,16 +162,52 @@ function updateCounter(count) {
 }
 
 /**
+ * Met à jour les compteurs des filtres par catégorie.
+ * IDs attendus :
+ * - count-all
+ * - count-web
+ * - count-mobile
+ * - count-api
+ * - count-desktop
+ * - count-autre
+ */
+function updateCategoryCounts(projects) {
+  const counts = {
+    all: projects.length,
+    web: 0,
+    mobile: 0,
+    api: 0,
+    desktop: 0,
+    autre: 0,
+  };
+
+  projects.forEach((project) => {
+    const key =
+      project.category && counts[project.category] !== undefined
+        ? project.category
+        : "autre";
+    counts[key] += 1;
+  });
+
+  Object.entries(counts).forEach(([key, value]) => {
+    const el = document.getElementById(`count-${key}`);
+    if (el) el.textContent = value;
+  });
+}
+
+/**
  * Initialise la liste dynamique des projets sur lister-projets.html.
  * - Injecte les cartes dans #projects-grid
- * - Branche les filtres par catégorie
  * - Met à jour les compteurs
+ * - Déclenche projects-list:ready pour laisser filter.js gérer l'UI du filtre
  */
 export function initProjectsList() {
   const grid = document.getElementById("projects-grid");
   if (!grid) return;
 
   const projects = getVisibleProjects();
+
+  updateCategoryCounts(projects);
 
   if (projects.length === 0) {
     grid.innerHTML = `
@@ -167,15 +221,11 @@ export function initProjectsList() {
     return;
   }
 
-  // Injecter les cartes
-  grid.innerHTML = projects.map((p, i) => buildCard(p, i)).join("");
+  grid.innerHTML = projects
+    .map((project, index) => buildCard(project, index))
+    .join("");
+
   updateCounter(projects.length);
 
-  // Mettre à jour le compteur total dans le header
-  const totalEl = document.getElementById("count-all");
-  if (totalEl) totalEl.textContent = projects.length;
-
-  // Rebrancher les filtres (le module filter.js cible .project-card)
-  // On déclenche un CustomEvent pour signaler que le DOM est prêt
   document.dispatchEvent(new CustomEvent("projects-list:ready"));
 }

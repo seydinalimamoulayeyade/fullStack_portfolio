@@ -147,9 +147,19 @@ export function getVisibleProjects() {
   const deletedIds = getDeletedIds();
   const stored = getStoredProjects();
 
-  return [...PROJECTS, ...stored].filter((project) => {
-    return !deletedIds.includes(project.id);
+  const mergedMap = new Map();
+
+  PROJECTS.forEach((project) => {
+    mergedMap.set(Number(project.id), project);
   });
+
+  stored.forEach((project) => {
+    mergedMap.set(Number(project.id), project);
+  });
+
+  return Array.from(mergedMap.values()).filter(
+    (project) => !deletedIds.includes(Number(project.id)),
+  );
 }
 
 /**

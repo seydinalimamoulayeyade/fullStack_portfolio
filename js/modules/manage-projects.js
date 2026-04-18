@@ -47,10 +47,17 @@ function renderManageSection(container) {
   const deletedIds = getDeletedIds();
   const stored = getStoredProjects();
 
-  const allProjects = [
-    ...PROJECTS.map((p) => ({ ...p, _isStored: false })),
-    ...stored.map((p) => ({ ...p, _isStored: true })),
-  ];
+  const mergedMap = new Map();
+
+  PROJECTS.forEach((project) => {
+    mergedMap.set(Number(project.id), { ...project, _isStored: false });
+  });
+
+  stored.forEach((project) => {
+    mergedMap.set(Number(project.id), { ...project, _isStored: true });
+  });
+
+  const allProjects = Array.from(mergedMap.values());
 
   const visible = allProjects.filter((p) => !deletedIds.includes(p.id));
 
@@ -76,7 +83,8 @@ function renderManageSection(container) {
       renderManageSection(container);
 
       const toast = document.createElement("div");
-      toast.className = "fixed bottom-6 right-6 bg-slate-800 text-white text-xs px-4 py-2 rounded-lg shadow";
+      toast.className =
+        "fixed bottom-6 right-6 bg-slate-800 text-white text-xs px-4 py-2 rounded-lg shadow";
       toast.textContent = `Projet supprimé`;
       document.body.appendChild(toast);
       setTimeout(() => toast.remove(), 2000);

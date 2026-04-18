@@ -1,6 +1,9 @@
 import "./main.js";
 import { initFilter } from "./modules/filter.js";
-import { initProjectsList } from "./modules/project-list.js";
+import {
+  getVisibleProjects,
+  initProjectsList,
+} from "./modules/project-list.js";
 
 function init() {
   initProjectsList();
@@ -12,3 +15,24 @@ if (document.readyState === "loading") {
 } else {
   init();
 }
+
+function updateStats() {
+  const projects = getVisibleProjects();
+
+  const projectCount = projects.length;
+
+  const techSet = new Set();
+  projects.forEach((p) => {
+    (p.tags || []).forEach((t) => techSet.add(t));
+  });
+
+  const techCount = techSet.size;
+
+  const statProjects = document.getElementById("stat-projects");
+  const statTech = document.getElementById("stat-tech");
+
+  if (statProjects) statProjects.textContent = projectCount;
+  if (statTech) statTech.textContent = techCount + "+";
+}
+
+updateStats();

@@ -3,7 +3,7 @@ import { getStoredProjects } from "./form-admin.js";
 import { PROJECTS, getIdFromUrl } from "./projects-data.js";
 
 /**
- * Échappe le HTML pour éviter les injections XSS
+ * Échappe le HTML pour éviter les injections XSS.
  * @param {string} str
  * @returns {string}
  */

@@ -41,8 +41,18 @@ function getAllVisibleProjects() {
   const stored = getStoredProjects();
   const deletedIds = getDeletedIds();
 
-  return [...PROJECTS, ...stored].filter(
-    (project) => !deletedIds.includes(project.id),
+  const mergedMap = new Map();
+
+  PROJECTS.forEach((project) => {
+    mergedMap.set(Number(project.id), project);
+  });
+
+  stored.forEach((project) => {
+    mergedMap.set(Number(project.id), project);
+  });
+
+  return Array.from(mergedMap.values()).filter(
+    (project) => !deletedIds.includes(Number(project.id)),
   );
 }
 

@@ -8,6 +8,7 @@ import {
 function init() {
   initProjectsList();
   initFilter();
+  updateStats();
 }
 
 if (document.readyState === "loading") {
@@ -34,5 +35,3 @@ function updateStats() {
   if (statProjects) statProjects.textContent = projectCount;
   if (statTech) statTech.textContent = techCount + "+";
 }
-
-updateStats();

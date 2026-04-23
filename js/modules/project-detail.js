@@ -107,24 +107,31 @@ function learnedItem(item) {
  * @param {object} project
  */
 function updatePageMeta(project) {
-  document.title = `${project.title} — Seydina Limamou Laye Yade`;
+  document.title = `${project.title} - Seydina Limamou Laye Yade`;
 
   const ogTitle = document.querySelector('meta[property="og:title"]');
   const ogImage = document.querySelector('meta[property="og:image"]');
   const ogDesc = document.querySelector('meta[property="og:description"]');
+  const twitterImage = document.querySelector('meta[name="twitter:image"]');
 
   if (ogTitle) {
-    ogTitle.setAttribute("content", `${project.title} — Portfolio SLLY`);
+    ogTitle.setAttribute("content", `${project.title} - Portfolio SLLY`);
   }
 
   if (ogDesc) {
     ogDesc.setAttribute("content", project.shortDesc);
   }
 
-  if (ogImage && project.ogImage) {
-    const base =
-      "https://seydinalimamoulayeyade.github.io/fullStack_portfolio/";
-    ogImage.setAttribute("content", base + project.ogImage);
+  if (project.ogImage) {
+    const absoluteOgImage = new URL(project.ogImage, window.location.href).href;
+
+    if (ogImage) {
+      ogImage.setAttribute("content", absoluteOgImage);
+    }
+
+    if (twitterImage) {
+      twitterImage.setAttribute("content", absoluteOgImage);
+    }
   }
 }
 

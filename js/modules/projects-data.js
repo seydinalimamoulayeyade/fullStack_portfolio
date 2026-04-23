@@ -1,4 +1,7 @@
-const imageUrl = (fileName) => `${import.meta.env.BASE_URL}images/${fileName}`;
+const BASE_URL = import.meta.env?.BASE_URL;
+
+const imageUrl = (fileName) =>
+  BASE_URL ? `${BASE_URL}images/${fileName}` : `public/images/${fileName}`;
 
 export const PROJECTS = [
   {

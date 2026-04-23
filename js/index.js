@@ -1,4 +1,3 @@
-import "../style.css";
 import "./main.js";
 import { initFeaturedProjects } from "./modules/featured-projects.js";
 import { initTypewriter } from "./modules/typewriter.js";

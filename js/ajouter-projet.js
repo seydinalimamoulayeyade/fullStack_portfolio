@@ -5,7 +5,6 @@ if (sessionStorage.getItem(ADMIN_ACCESS_KEY) !== ADMIN_ACCESS_VALUE) {
   window.location.replace("index.html");
 }
 
-import "../style.css";
 import "./main.js";
 import { initFormAdmin } from "./modules/form-admin.js";
 import { initManageProjects } from "./modules/manage-projects.js";

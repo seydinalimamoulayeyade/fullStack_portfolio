@@ -12,7 +12,6 @@
  * @version 2.1.0
  */
 
-import "../style.css";
 import "./main.js";
 import { initProjectDetail } from "./modules/project-detail.js";
 

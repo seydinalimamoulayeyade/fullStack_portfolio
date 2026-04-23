@@ -6,8 +6,8 @@
 
     <!-- ── SEO ── -->
     <title>
-      Application E-commerce — Seydina Limamou Laye Yade · Développeur Full
-      Stack
+      Application E-commerce — Seydina Limamou Laye Yade · Ingénieur Cloud &
+      DevOps
     </title>
     <meta
       name="description"
@@ -15,7 +15,7 @@
     />
     <meta
       name="keywords"
-      content="e-commerce, Node.js, MongoDB, Express, JWT, full stack, portfolio"
+      content="e-commerce, Node.js, MongoDB, Express, JWT, portfolio, projet web"
     />
     <meta name="author" content="Seydina Limamou Laye Yade" />
     <meta name="robots" content="index, follow" />
@@ -60,73 +60,13 @@
       content="https://seydinalimamoulayeyade.github.io/fullStack_portfolio/images/projet1.jpg"
     />
 
-    <!-- Tailwind CDN Play -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              primary: { DEFAULT: "#1a1a2e", light: "#16213e" },
-              accent: { DEFAULT: "#e94560", hover: "#c73652" },
-              surface: { DEFAULT: "#0f3460", light: "#1a4a8a" },
-              muted: "#94a3b8",
-            },
-            fontFamily: {
-              sans: ["Inter", "system-ui", "sans-serif"],
-              mono: ["JetBrains Mono", "monospace"],
-            },
-          },
-        },
-      };
-    </script>
-    <!-- Google Fonts -->
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
-
-    <style type="text/tailwindcss">
-      @layer base {
-        html {
-          scroll-behavior: smooth;
-        }
-        body {
-          @apply bg-primary text-slate-200 font-sans antialiased;
-        }
-      }
-      @layer components {
-        .nav-link {
-          @apply text-slate-300 hover:text-accent transition-colors duration-200 text-sm font-medium;
-        }
-        .nav-link-active {
-          @apply text-accent text-sm font-medium;
-        }
-        .btn-primary {
-          @apply inline-flex items-center gap-2 bg-accent hover:bg-accent-hover text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-colors duration-200;
-        }
-        .btn-outline {
-          @apply inline-flex items-center gap-2 border border-slate-600 hover:border-accent text-slate-300 hover:text-accent text-sm font-medium px-5 py-2.5 rounded-lg transition-colors duration-200;
-        }
-        .badge-tech {
-          @apply inline-block text-xs font-mono bg-primary bg-opacity-80 border border-slate-700 text-slate-300 px-2.5 py-1 rounded-md;
-        }
-        .info-row {
-          @apply flex items-start gap-3 py-3 border-b border-slate-800 last:border-0;
-        }
-        .info-label {
-          @apply text-slate-500 text-xs font-medium uppercase tracking-wider w-28 flex-shrink-0 pt-0.5;
-        }
-        .info-value {
-          @apply text-slate-200 text-sm;
-        }
-        .feature-item {
-          @apply flex items-start gap-3 text-sm text-slate-300;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="./style.css" />
   </head>
 
   <body class="min-h-screen flex flex-col">
@@ -157,7 +97,6 @@
           Me contacter
         </a>
 
-        <!-- Menu mobile — bouton JS (feat 03) -->
         <button
           id="mobile-menu-toggle"
           class="md:hidden p-2 text-slate-300 hover:text-accent transition-colors"
@@ -197,7 +136,6 @@
     </nav>
 
     <main class="flex-1 max-w-6xl mx-auto px-6 py-10 w-full">
-      <!-- FIL D'ARIANE + RETOUR -->
       <div
         class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8"
       >
@@ -266,11 +204,8 @@
         </a>
       </div>
 
-      <!-- LAYOUT DEUX COLONNES -->
       <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
-        <!-- COLONNE GAUCHE -->
         <aside class="lg:col-span-2 flex flex-col gap-6">
-          <!-- Image -->
           <div
             class="relative rounded-2xl overflow-hidden border border-slate-700 group"
           >
@@ -309,7 +244,6 @@
             >
           </div>
 
-          <!-- Infos -->
           <div
             class="bg-surface bg-opacity-30 border border-slate-700 rounded-2xl p-5"
           >
@@ -319,9 +253,11 @@
               Informations
             </h3>
             <div class="divide-y divide-slate-800">
-              <div class="info-row">
-                <span class="info-label">Date</span>
-                <span class="info-value flex items-center gap-2">
+              <div class="py-3 flex items-center justify-between gap-4">
+                <span class="text-slate-500 text-xs uppercase tracking-wide"
+                  >Date</span
+                >
+                <span class="text-slate-300 text-sm flex items-center gap-2">
                   <svg
                     class="w-3.5 h-3.5 text-accent flex-shrink-0"
                     fill="none"
@@ -338,9 +274,11 @@
                   <span id="info-date">—</span>
                 </span>
               </div>
-              <div class="info-row">
-                <span class="info-label">Catégorie</span>
-                <span class="info-value flex items-center gap-2">
+              <div class="py-3 flex items-center justify-between gap-4">
+                <span class="text-slate-500 text-xs uppercase tracking-wide"
+                  >Catégorie</span
+                >
+                <span class="text-slate-300 text-sm flex items-center gap-2">
                   <svg
                     class="w-3.5 h-3.5 text-accent flex-shrink-0"
                     fill="none"
@@ -357,9 +295,11 @@
                   <span id="info-category">—</span>
                 </span>
               </div>
-              <div class="info-row">
-                <span class="info-label">Statut</span>
-                <span class="info-value flex items-center gap-2">
+              <div class="py-3 flex items-center justify-between gap-4">
+                <span class="text-slate-500 text-xs uppercase tracking-wide"
+                  >Statut</span
+                >
+                <span class="text-slate-300 text-sm flex items-center gap-2">
                   <span
                     id="info-status-dot"
                     class="inline-block w-2 h-2 rounded-full bg-slate-500 flex-shrink-0"
@@ -367,21 +307,23 @@
                   <span id="info-status">—</span>
                 </span>
               </div>
-              <div class="info-row">
-                <span class="info-label">Rôle</span>
-                <span id="info-role" class="info-value">—</span>
+              <div class="py-3 flex items-center justify-between gap-4">
+                <span class="text-slate-500 text-xs uppercase tracking-wide"
+                  >Rôle</span
+                >
+                <span id="info-role" class="text-slate-300 text-sm">—</span>
               </div>
-              <div class="info-row">
-                <span class="info-label">Durée</span>
-                <span id="info-duration" class="info-value">—</span>
+              <div class="py-3 flex items-center justify-between gap-4">
+                <span class="text-slate-500 text-xs uppercase tracking-wide"
+                  >Durée</span
+                >
+                <span id="info-duration" class="text-slate-300 text-sm">—</span>
               </div>
             </div>
           </div>
         </aside>
 
-        <!-- COLONNE DROITE -->
         <div class="lg:col-span-3 flex flex-col gap-8">
-          <!-- Titre -->
           <div>
             <div class="flex items-center gap-3 mb-3">
               <span
@@ -403,7 +345,6 @@
             ></p>
           </div>
 
-          <!-- Description -->
           <div
             class="bg-surface bg-opacity-30 border border-slate-700 rounded-2xl p-6"
           >
@@ -431,7 +372,6 @@
             ></div>
           </div>
 
-          <!-- Fonctionnalités -->
           <div
             class="bg-surface bg-opacity-30 border border-slate-700 rounded-2xl p-6"
           >
@@ -459,7 +399,6 @@
             ></div>
           </div>
 
-          <!-- Stack -->
           <div
             class="bg-surface bg-opacity-30 border border-slate-700 rounded-2xl p-6"
           >
@@ -507,7 +446,6 @@
             </div>
           </div>
 
-          <!-- Appris -->
           <div class="border border-slate-700 border-dashed rounded-2xl p-6">
             <h2
               class="text-white font-semibold text-base mb-4 flex items-center gap-2"
@@ -535,7 +473,6 @@
         </div>
       </div>
 
-      <!-- PROJETS SIMILAIRES -->
       <section class="mt-16 pt-10 border-t border-slate-800">
         <div class="flex items-end justify-between mb-6">
           <div>
@@ -557,16 +494,13 @@
       </section>
     </main>
 
-    <!-- ═══════════════════════════════════════════════
-       FOOTER
-  ════════════════════════════════════════════════ -->
     <footer class="border-t border-slate-800 py-8 mt-10">
       <div
         class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4"
       >
         <span class="font-mono text-accent text-sm">&lt;SLLY /&gt;</span>
         <p class="text-slate-500 text-xs text-center">
-          &copy; 2025 Seydina Limamou Laye Yade — Tous droits réservés
+          &copy; 2026 Seydina Limamou Laye Yade — Tous droits réservés
         </p>
         <div class="flex gap-4">
           <a
@@ -599,22 +533,6 @@
       </div>
     </footer>
 
-    <!-- Animations au scroll — état initial -->
-    <style>
-      [data-animate] {
-        opacity: 0;
-        transform: translateY(24px);
-        transition:
-          opacity 0.55s ease,
-          transform 0.55s ease;
-      }
-      [data-animate].is-visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    </style>
-
-    <!-- Point d'entrée JS de cette page -->
     <script type="module" src="js/detailler-projet.js"></script>
   </body>
 </html>

@@ -55,14 +55,14 @@
       name="twitter:image"
       content="https://seydinalimamoulayeyade.github.io/fullStack_portfolio/images/og-preview.jpg"
     />
-    <!-- Google Fonts -->
-    <link rel="stylesheet" href="style.css" />
+
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="./style.css" />
   </head>
 
   <body class="min-h-screen flex flex-col">
@@ -72,16 +72,13 @@
     >
       Aller au contenu
     </a>
-    <!-- ═══════════════════════════════════════════════
-       NAVIGATION
-  ════════════════════════════════════════════════ -->
+
     <nav
       class="sticky top-0 z-50 border-b border-slate-800/80 bg-primary/95 backdrop-blur-xl"
     >
       <div
         class="max-w-6xl mx-auto px-6 h-[72px] flex items-center justify-between"
       >
-        <!-- Logo + retour -->
         <div class="flex items-center gap-4">
           <a
             href="index.html"
@@ -113,7 +110,6 @@
           </a>
         </div>
 
-        <!-- Nav centrale -->
         <div class="hidden md:flex items-center gap-2">
           <span
             class="inline-flex items-center px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-medium border border-accent/20"
@@ -122,16 +118,16 @@
           </span>
         </div>
 
-        <!-- CTA -->
         <a href="index.html#contact" class="btn-primary hidden md:inline-flex">
           Me contacter
         </a>
 
-        <!-- Mobile -->
         <button
           id="mobile-menu-toggle"
           class="md:hidden p-2.5 rounded-lg text-slate-300 hover:text-accent hover:bg-white/5 transition-colors"
           aria-label="Ouvrir le menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu-panel"
         >
           <svg
             class="w-5 h-5"
@@ -149,7 +145,6 @@
         </button>
       </div>
 
-      <!-- Mobile menu -->
       <div
         id="mobile-menu-panel"
         class="hidden md:hidden border-t border-slate-800 bg-primary/95 backdrop-blur-xl px-6 py-5 space-y-3"
@@ -173,11 +168,7 @@
       </div>
     </nav>
 
-    <!-- ═══════════════════════════════════════════════
-       EN-TÊTE DE PAGE
-  ════════════════════════════════════════════════ -->
     <header class="max-w-6xl mx-auto px-6 pt-12 pb-10 w-full">
-      <!-- Breadcrumb -->
       <nav
         aria-label="Fil d'Ariane"
         class="flex items-center gap-2 text-xs text-slate-500 mb-8"
@@ -206,7 +197,6 @@
       <div
         class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8"
       >
-        <!-- Bloc titre -->
         <div class="max-w-xl">
           <p
             class="text-xs font-mono uppercase tracking-widest text-accent mb-3"
@@ -224,9 +214,7 @@
           </p>
         </div>
 
-        <!-- Stats -->
         <div class="flex gap-4">
-          <!-- Projets -->
           <div
             class="min-w-[100px] bg-surface bg-opacity-40 border border-slate-700 rounded-2xl px-5 py-4 text-center backdrop-blur-sm"
           >
@@ -236,7 +224,6 @@
             <div class="text-xs text-slate-400 mt-1">Projets</div>
           </div>
 
-          <!-- Technos -->
           <div
             class="min-w-[100px] bg-surface bg-opacity-40 border border-slate-700 rounded-2xl px-5 py-4 text-center backdrop-blur-sm"
           >
@@ -247,9 +234,6 @@
       </div>
     </header>
 
-    <!-- ═══════════════════════════════════════════════
-       FILTRES PAR CATÉGORIE (JS interactif)
-  ════════════════════════════════════════════════ -->
     <div class="max-w-6xl mx-auto px-6 mb-8 w-full">
       <div class="flex flex-wrap items-center gap-3">
         <div id="filter-buttons" class="flex flex-wrap gap-2">
@@ -419,16 +403,11 @@
       </div>
     </div>
 
-    <!-- ═══════════════════════════════════════════════
-       GRILLE DES PROJETS
-  ════════════════════════════════════════════════ -->
     <main id="main-content" class="max-w-6xl mx-auto px-6 pb-20 w-full flex-1">
-      <!-- Grille dynamique — alimentée par js/modules/projects-list.js -->
       <div
         id="projects-grid"
         class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
       >
-        <!-- Les cartes sont injectées par JavaScript -->
         <div class="col-span-full flex items-center justify-center py-12">
           <div class="flex items-center gap-3 text-slate-500 text-sm">
             <svg
@@ -449,9 +428,6 @@
         </div>
       </div>
 
-      <!-- ═══════════════════════════════════════════════
-         APPEL À L'ACTION — BAS DE PAGE
-    ════════════════════════════════════════════════ -->
       <div
         class="mt-16 text-center bg-surface bg-opacity-30 border border-slate-700 rounded-2xl px-6 py-10"
       >
@@ -481,9 +457,6 @@
       </div>
     </main>
 
-    <!-- ═══════════════════════════════════════════════
-       FOOTER
-  ════════════════════════════════════════════════ -->
     <footer class="border-t border-slate-800 py-8">
       <div
         class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4"
@@ -523,7 +496,6 @@
       </div>
     </footer>
 
-    <!-- Point d'entrée JS de cette page -->
     <script type="module" src="js/lister-projets.js"></script>
   </body>
 </html>

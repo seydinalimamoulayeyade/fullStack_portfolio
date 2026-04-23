@@ -1,3 +1,5 @@
+const imageUrl = (fileName) => `${import.meta.env.BASE_URL}images/${fileName}`;
+
 export const PROJECTS = [
   {
     id: 1,
@@ -9,10 +11,10 @@ export const PROJECTS = [
     duration: "3 mois",
     status: "Terminé",
     role: "Développeur Full Stack",
-    image: "images/projet1.jpg",
+    image: imageUrl("projet1.jpg"),
     demoUrl: null,
     githubUrl: "https://github.com/seydinalimamoulayeyade",
-    ogImage: "images/projet1.jpg",
+    ogImage: imageUrl("projet1.jpg"),
     shortDesc:
       "Plateforme complète avec catalogue produits, panier, authentification et tableau de bord administrateur.",
     description: [
@@ -53,10 +55,10 @@ export const PROJECTS = [
     duration: "2 mois",
     status: "Terminé",
     role: "Développeur Full Stack",
-    image: "images/projet2.jpg",
+    image: imageUrl("projet2.jpg"),
     demoUrl: null,
     githubUrl: "https://github.com/seydinalimamoulayeyade",
-    ogImage: "images/projet2.jpg",
+    ogImage: imageUrl("projet2.jpg"),
     shortDesc:
       "Application web de gestion de tâches quotidiennes avec synchronisation en temps réel.",
     description: [
@@ -95,10 +97,10 @@ export const PROJECTS = [
     duration: "6 semaines",
     status: "Terminé",
     role: "Développeur Full Stack",
-    image: "images/projet3.jpg",
+    image: imageUrl("projet3.jpg"),
     demoUrl: null,
     githubUrl: "https://github.com/seydinalimamoulayeyade",
-    ogImage: "images/projet3.jpg",
+    ogImage: imageUrl("projet3.jpg"),
     shortDesc:
       "Blog moderne avec système de commentaires et partage sur les réseaux sociaux.",
     description: [
@@ -138,10 +140,10 @@ export const PROJECTS = [
     duration: "3 semaines",
     status: "Terminé",
     role: "Développeur Mobile",
-    image: "images/projet4.jpg",
+    image: imageUrl("projet4.jpg"),
     demoUrl: null,
     githubUrl: "https://github.com/seydinalimamoulayeyade",
-    ogImage: "images/projet4.jpg",
+    ogImage: imageUrl("projet4.jpg"),
     shortDesc:
       "Application mobile de consultation météo avec géolocalisation et prévisions sur 7 jours.",
     description: [
@@ -180,10 +182,10 @@ export const PROJECTS = [
     duration: "4 semaines",
     status: "Terminé",
     role: "Développeur Back-End",
-    image: "images/projet5.jpg",
+    image: imageUrl("projet5.jpg"),
     demoUrl: null,
     githubUrl: "https://github.com/seydinalimamoulayeyade",
-    ogImage: "images/projet5.jpg",
+    ogImage: imageUrl("projet5.jpg"),
     shortDesc:
       "API RESTful sécurisée avec authentification JWT, rôles et permissions.",
     description: [
@@ -222,10 +224,10 @@ export const PROJECTS = [
     duration: "2 mois",
     status: "Terminé",
     role: "Développeur Full Stack",
-    image: "images/projet6.jpg",
+    image: imageUrl("projet6.jpg"),
     demoUrl: null,
     githubUrl: "https://github.com/seydinalimamoulayeyade",
-    ogImage: "images/projet6.jpg",
+    ogImage: imageUrl("projet6.jpg"),
     shortDesc:
       "Tableau de bord de visualisation de données avec graphiques interactifs et exports.",
     description: [

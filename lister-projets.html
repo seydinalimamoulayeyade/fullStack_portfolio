@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- ── SEO ── -->
-    <title>Projets — Seydina Limamou Laye Yade · Développeur Full Stack</title>
+    <title>
+      Projets — Seydina Limamou Laye Yade · Ingénieur Cloud & DevOps
+    </title>
     <meta
       name="description"
-      content="Découvrez les projets web de Seydina Limamou Laye Yade : applications web, mobile, API REST. Node.js, React, MongoDB et plus."
+      content="Découvrez les projets web de Seydina Limamou Laye Yade : applications web, API, automatisation, cloud et déploiement. Node.js, React, MongoDB et plus."
     />
     <meta
       name="keywords"
@@ -29,7 +31,7 @@
     />
     <meta
       property="og:title"
-      content="Projets — Seydina Limamou Laye Yade · Développeur Full Stack"
+      content="Projets — Seydina Limamou Laye Yade · Ingénieur Cloud & DevOps"
     />
     <meta
       property="og:description"
@@ -75,7 +77,7 @@
       };
     </script>
     <!-- Google Fonts -->
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
@@ -121,6 +123,12 @@
   </head>
 
   <body class="min-h-screen flex flex-col">
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:bg-accent focus:text-white px-4 py-2 rounded"
+    >
+      Aller au contenu
+    </a>
     <!-- ═══════════════════════════════════════════════
        NAVIGATION
   ════════════════════════════════════════════════ -->
@@ -471,7 +479,7 @@
     <!-- ═══════════════════════════════════════════════
        GRILLE DES PROJETS
   ════════════════════════════════════════════════ -->
-    <main class="max-w-6xl mx-auto px-6 pb-20 w-full flex-1">
+    <main id="main-content" class="max-w-6xl mx-auto px-6 pb-20 w-full flex-1">
       <!-- Grille dynamique — alimentée par js/modules/projects-list.js -->
       <div
         id="projects-grid"
@@ -539,7 +547,7 @@
       >
         <span class="font-mono text-accent text-sm">&lt;SLLY /&gt;</span>
         <p class="text-slate-500 text-xs text-center">
-          &copy; 2025 Seydina Limamou Laye Yade — Tous droits réservés
+          &copy; 2026 Seydina Limamou Laye Yade — Tous droits réservés
         </p>
         <div class="flex gap-4">
           <a
@@ -584,6 +592,12 @@
       [data-animate].is-visible {
         opacity: 1;
         transform: translateY(0);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation: none !important;
+          transition: none !important;
+        }
       }
     </style>
 

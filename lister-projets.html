@@ -56,26 +56,6 @@
       content="https://seydinalimamoulayeyade.github.io/fullStack_portfolio/images/og-preview.jpg"
     />
 
-    <!-- Tailwind CDN Play -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              primary: { DEFAULT: "#1a1a2e", light: "#16213e" },
-              accent: { DEFAULT: "#e94560", hover: "#c73652" },
-              surface: { DEFAULT: "#0f3460", light: "#1a4a8a" },
-              muted: "#94a3b8",
-            },
-            fontFamily: {
-              sans: ["Inter", "system-ui", "sans-serif"],
-              mono: ["JetBrains Mono", "monospace"],
-            },
-          },
-        },
-      };
-    </script>
     <!-- Google Fonts -->
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -84,42 +64,7 @@
       rel="stylesheet"
     />
 
-    <style type="text/tailwindcss">
-      @layer base {
-        html {
-          scroll-behavior: smooth;
-        }
-        body {
-          @apply bg-primary text-slate-200 font-sans antialiased;
-        }
-      }
-      @layer components {
-        .nav-link {
-          @apply text-slate-300 hover:text-accent transition-colors duration-200 text-sm font-medium;
-        }
-        .nav-link-active {
-          @apply text-accent text-sm font-medium;
-        }
-        .btn-primary {
-          @apply inline-flex items-center gap-2 bg-accent hover:bg-accent-hover text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-colors duration-200;
-        }
-        .btn-outline {
-          @apply inline-flex items-center gap-2 border border-slate-600 hover:border-accent text-slate-300 hover:text-accent text-sm font-medium px-5 py-2.5 rounded-lg transition-colors duration-200;
-        }
-        .card-project {
-          @apply bg-surface bg-opacity-40 border border-slate-700 hover:border-accent rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-1;
-        }
-        .badge-tech {
-          @apply inline-block text-xs font-mono bg-primary bg-opacity-80 border border-slate-700 text-slate-300 px-2.5 py-1 rounded-md;
-        }
-        .section-title {
-          @apply text-2xl font-bold text-white mb-1;
-        }
-        .section-subtitle {
-          @apply text-slate-400 text-sm mb-8;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="/fullStack_portfolio/style.css" />
   </head>
 
   <body class="min-h-screen flex flex-col">

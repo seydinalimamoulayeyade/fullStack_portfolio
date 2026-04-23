@@ -7,6 +7,26 @@ const ADMIN_ACCESS_VALUE = "granted";
 const ADMIN_REDIRECT_PAGE = "ajouter-projet.html";
 const ADMIN_CODE = "SLLY2026";
 
+function isAdminSessionActive() {
+  return sessionStorage.getItem(ADMIN_ACCESS_KEY) === ADMIN_ACCESS_VALUE;
+}
+
+function updateAdminSessionBadge() {
+  const badge = document.getElementById("admin-session-badge");
+  const mobileBadge = document.getElementById("admin-session-badge-mobile");
+  const active = isAdminSessionActive();
+
+  if (badge) {
+    badge.classList.toggle("hidden", !active);
+    badge.classList.toggle("inline-flex", active);
+  }
+
+  if (mobileBadge) {
+    mobileBadge.classList.toggle("hidden", !active);
+    mobileBadge.classList.toggle("flex", active);
+  }
+}
+
 function openAdminModal() {
   const modal = document.getElementById("admin-modal");
   const input = document.getElementById("admin-access-code");
@@ -36,6 +56,7 @@ function closeAdminModal() {
 
 function grantAdminAccess() {
   sessionStorage.setItem(ADMIN_ACCESS_KEY, ADMIN_ACCESS_VALUE);
+  updateAdminSessionBadge();
   window.location.href = ADMIN_REDIRECT_PAGE;
 }
 
@@ -106,6 +127,7 @@ function init() {
   initFeaturedProjects();
   initTypewriter();
   initAdminAccess();
+  updateAdminSessionBadge();
 }
 
 if (document.readyState === "loading") {

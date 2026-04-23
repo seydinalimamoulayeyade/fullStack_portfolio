@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-primary text-slate-200 font-sans antialiased;
+  }
+}
+
+@layer components {
+  .nav-link {
+    @apply text-slate-300 hover:text-accent transition-colors duration-200 text-sm font-medium;
+  }
+  .nav-link-active {
+    @apply text-accent text-sm font-medium;
+  }
+  .btn-primary {
+    @apply inline-flex items-center gap-2 bg-accent hover:bg-accent-hover text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-colors duration-200;
+  }
+  .btn-outline {
+    @apply inline-flex items-center gap-2 border border-slate-600 hover:border-accent text-slate-300 hover:text-accent text-sm font-medium px-5 py-2.5 rounded-lg transition-colors duration-200;
+  }
+}

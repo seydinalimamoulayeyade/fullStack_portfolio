@@ -23,79 +23,121 @@ const CATEGORY_BADGE = {
 };
 
 /**
+ * Réactive les animations au scroll pour les éléments injectés dynamiquement.
+ */
+function animateInjectedCards() {
+  const elements = document.querySelectorAll(
+    "#featured-projects [data-animate]:not(.is-visible)",
+  );
+  if (!elements.length) return;
+
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        obs.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.15 },
+  );
+
+  elements.forEach((el) => observer.observe(el));
+}
+
+/**
  * Génère une carte projet vedette.
  * @param {object} project
+ * @param {number} index
  * @returns {string}
  */
-function buildFeaturedCard(project) {
+function buildFeaturedCard(project, index = 0) {
   const categoryLabel =
     project.categoryLabel || CATEGORY_BADGE[project.category] || "Autre";
 
-  const tagsHtml = (project.tags || [])
+  const techList = Array.isArray(project.tags)
+    ? project.tags
+    : Array.isArray(project.technologies)
+      ? project.technologies
+      : [];
+
+  const tagsHtml = techList
     .slice(0, 3)
     .map((tag) => `<span class="badge-tech">${escapeHTML(tag)}</span>`)
     .join("");
+
+  const shortText = project.shortDesc || project.shortDescription || "";
 
   const imageBlock = project.image
     ? `
       <img
         src="${escapeHTML(project.image)}"
         alt="${escapeHTML(project.title)}"
-        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        class="featured-card-image"
+        loading="lazy"
       />
     `
     : `
-      <div class="w-full h-full bg-surface flex items-center justify-center">
-        <span class="text-3xl font-bold text-slate-500">
+      <div class="featured-card-image bg-surface flex items-center justify-center">
+        <span class="text-4xl font-bold text-slate-500">
           ${escapeHTML((project.title || "?").charAt(0))}
         </span>
       </div>
     `;
 
   return `
-    <article class="card-project group">
-      <div class="relative overflow-hidden h-48">
+    <article
+      class="featured-card"
+      data-animate
+      style="transition-delay: ${index * 120}ms"
+    >
+      <div class="relative overflow-hidden h-52">
         ${imageBlock}
-        <div class="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent opacity-70"></div>
-        <span
-          class="absolute top-3 right-3 bg-accent text-white text-xs font-medium px-2.5 py-1 rounded-md"
-        >
+        <div class="featured-card-overlay"></div>
+
+        <span class="featured-card-badge absolute top-3 left-3">
           ${escapeHTML(categoryLabel)}
         </span>
       </div>
 
-      <div class="p-5">
-        <h3 class="text-white font-semibold text-lg mb-2 group-hover:text-accent transition-colors">
+      <div class="featured-card-content">
+        <h3 class="featured-card-title">
           ${escapeHTML(project.title)}
         </h3>
 
-        <p class="text-slate-400 text-sm leading-relaxed mb-4">
-          ${escapeHTML(project.shortDesc || "")}
+        <p class="featured-card-text">
+          ${escapeHTML(shortText)}
         </p>
 
-        <div class="flex flex-wrap gap-1.5 mb-4">
+        <div class="flex flex-wrap gap-2 mb-4">
           ${tagsHtml}
         </div>
 
-        <a
-          href="detailler-projet.html?id=${encodeURIComponent(project.id)}"
-          class="inline-flex items-center gap-1.5 text-accent hover:underline text-sm font-medium"
-        >
-          Voir le projet
-          <svg
-            class="w-3.5 h-3.5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+        <div class="featured-card-footer">
+          <a
+            href="detailler-projet.html?id=${encodeURIComponent(project.id)}"
+            class="featured-card-link"
           >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M17 8l4 4m0 0l-4 4m4-4H3"
-            />
-          </svg>
-        </a>
+            Voir le projet
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M17 8l4 4m0 0l-4 4m4-4H3"
+              />
+            </svg>
+          </a>
+
+          <span class="text-xs text-slate-500 font-mono">
+            #${escapeHTML(String(project.id))}
+          </span>
+        </div>
       </div>
     </article>
   `;
@@ -119,5 +161,9 @@ export function initFeaturedProjects() {
     return;
   }
 
-  container.innerHTML = projects.map(buildFeaturedCard).join("");
+  container.innerHTML = projects
+    .map((project, index) => buildFeaturedCard(project, index))
+    .join("");
+
+  animateInjectedCards();
 }

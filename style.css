@@ -6,6 +6,7 @@
   html {
     scroll-behavior: smooth;
   }
+
   body {
     @apply bg-primary text-slate-200 font-sans antialiased;
   }
@@ -15,13 +16,111 @@
   .nav-link {
     @apply text-slate-300 hover:text-accent transition-colors duration-200 text-sm font-medium;
   }
+
   .nav-link-active {
     @apply text-accent text-sm font-medium;
   }
+
   .btn-primary {
     @apply inline-flex items-center gap-2 bg-accent hover:bg-accent-hover text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-colors duration-200;
   }
+
   .btn-outline {
     @apply inline-flex items-center gap-2 border border-slate-600 hover:border-accent text-slate-300 hover:text-accent text-sm font-medium px-5 py-2.5 rounded-lg transition-colors duration-200;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 text-slate-400 hover:text-accent text-sm font-medium transition-colors duration-200;
+  }
+
+  .badge-tech {
+    @apply inline-block text-xs font-mono bg-primary/80 border border-slate-700 text-slate-300 px-2.5 py-1 rounded-md;
+  }
+
+  .section-title {
+    @apply text-2xl font-bold text-white mb-1;
+  }
+
+  .section-subtitle {
+    @apply text-slate-400 text-sm mb-8;
+  }
+
+  .card-project {
+    @apply relative overflow-hidden rounded-2xl border border-slate-700 bg-surface/30 transition-all duration-300 hover:-translate-y-2 hover:border-accent hover:shadow-2xl hover:shadow-black/30;
+  }
+
+  .featured-card {
+    @apply relative overflow-hidden rounded-2xl border border-slate-700 bg-surface/30 transition-all duration-300 hover:-translate-y-2 hover:border-accent hover:shadow-2xl hover:shadow-black/30;
+  }
+
+  .featured-card-image {
+    @apply h-52 w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110;
+  }
+
+  .featured-card-overlay {
+    @apply absolute inset-0 bg-gradient-to-t from-primary via-primary/40 to-transparent opacity-70;
+  }
+
+  .featured-card-content {
+    @apply relative p-5;
+  }
+
+  .featured-card-title {
+    @apply text-white text-lg font-semibold mb-2 transition-colors duration-200 group-hover:text-accent;
+  }
+
+  .featured-card-text {
+    @apply text-slate-400 text-sm leading-relaxed mb-4;
+  }
+
+  .featured-card-footer {
+    @apply flex items-center justify-between gap-3 mt-4;
+  }
+
+  .featured-card-link {
+    @apply inline-flex items-center gap-2 text-accent text-sm font-medium hover:underline;
+  }
+
+  .featured-card-badge {
+    @apply inline-flex items-center rounded-full bg-accent/10 border border-accent/20 text-accent text-xs px-3 py-1;
+  }
+}
+
+[data-animate] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.55s ease,
+    transform 0.55s ease;
+}
+
+[data-animate].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  [data-animate] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .featured-card,
+  .featured-card-image,
+  .card-project,
+  .btn-primary,
+  .btn-outline,
+  .nav-link {
+    transition: none !important;
+  }
+
+  .featured-card:hover,
+  .card-project:hover {
+    transform: none !important;
   }
 }

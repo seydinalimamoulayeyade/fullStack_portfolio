@@ -1,9 +1,9 @@
 const PHRASES = [
-  "Développeur Full Stack",
-  "Développeur Node.js & React",
-  "Passionné Cloud & DevOps",
-  "Ingénieur logiciel · Dakar",
-  "Disponible pour missions",
+  "Virtual Voyager",
+  "Cloud Engineer & DevOps",
+  "Node.js, React, Docker, CI/CD",
+  "Cloud-first builder in Dakar",
+  "Disponible pour missions Cloud",
 ];
 
 const CONFIG = {

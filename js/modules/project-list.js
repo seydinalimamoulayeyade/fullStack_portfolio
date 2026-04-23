@@ -98,26 +98,26 @@ function buildCard(project, index) {
       data-category="${escapeHTML(project.category ?? "autre")}"
       data-id="${escapeHTML(project.id)}"
     >
-      <div class="relative overflow-hidden h-48">
+      <div class="relative overflow-hidden h-44 sm:h-48">
         ${imageBlock}
         <div class="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent opacity-80"></div>
-        <span class="absolute top-3 left-3 inline-flex items-center gap-1 ${cat.bg} bg-opacity-90 text-white text-xs font-medium px-2.5 py-1 rounded-md">
+        <span class="absolute top-3 left-3 inline-flex items-center gap-1 ${cat.bg} bg-opacity-90 text-white text-[11px] sm:text-xs font-medium px-2.5 py-1 rounded-md">
           <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="${cat.icon}"/>
           </svg>
           ${escapeHTML(cat.label)}
         </span>
-        <span class="absolute top-3 right-3 bg-primary bg-opacity-80 text-slate-300 text-xs px-2 py-1 rounded-md font-mono">
+        <span class="absolute top-3 right-3 bg-primary bg-opacity-80 text-slate-200 text-[11px] sm:text-xs px-2 py-1 rounded-md font-mono">
           ${escapeHTML(dateLabel)}
         </span>
       </div>
 
-      <div class="p-5 flex flex-col gap-3">
+      <div class="p-4 sm:p-5 flex flex-col gap-3">
         <div>
-          <h2 class="text-white font-semibold text-base group-hover:text-accent transition-colors leading-snug">
+          <h2 class="text-white font-semibold text-base group-hover:text-accent transition-colors leading-snug line-clamp-2">
             ${escapeHTML(project.title)}
           </h2>
-          <p class="text-slate-400 text-xs mt-1.5 leading-relaxed">
+          <p class="text-slate-300 text-[13px] sm:text-xs mt-1.5 leading-relaxed line-clamp-3">
             ${escapeHTML(project.shortDesc ?? "")}
           </p>
         </div>
@@ -126,7 +126,7 @@ function buildCard(project, index) {
 
         <div class="pt-1 border-t border-slate-700 flex items-center justify-between">
           <a href="detailler-projet.html?id=${encodeURIComponent(project.id)}"
-             class="inline-flex items-center gap-1.5 text-accent hover:underline text-sm font-medium">
+             class="inline-flex items-center gap-1.5 text-accent hover:underline text-sm font-medium rounded-md px-1 py-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 focus-visible:ring-offset-2 focus-visible:ring-offset-primary">
             Voir le détail
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>

@@ -236,7 +236,7 @@
     </nav>
 
     <section
-      class="relative max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20 md:py-28 overflow-hidden rounded-3xl sm:rounded-[2rem]"
+      class="hero-shell relative max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20 md:py-28 overflow-hidden"
       data-animate
     >
       <div
@@ -294,7 +294,10 @@
           <div
             class="mt-8 flex w-full flex-col sm:w-auto sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start"
           >
-            <a href="lister-projets.html" class="btn-primary w-full sm:w-auto justify-center">
+            <a
+              href="lister-projets.html"
+              class="btn-primary w-full sm:w-auto justify-center"
+            >
               Voir mes projets
               <svg
                 class="w-4 h-4"
@@ -310,7 +313,10 @@
                 />
               </svg>
             </a>
-            <a href="assets/cv-seydina-devops.pdf" class="btn-outline w-full sm:w-auto justify-center">
+            <a
+              href="assets/cv-seydina-devops.pdf"
+              class="btn-outline w-full sm:w-auto justify-center"
+            >
               Télécharger mon CV
               <svg
                 class="w-4 h-4"
@@ -359,26 +365,27 @@
         </div>
 
         <div class="flex-shrink-0">
-          <div class="relative">
+          <div class="hero-orbit">
             <div
-              class="absolute -inset-3 rounded-full border-2 border-accent border-dashed opacity-30"
+              class="hero-orbit-ring hero-orbit-ring--outer"
+              aria-hidden="true"
+            ></div>
+            <div
+              class="hero-orbit-ring hero-orbit-ring--inner"
+              aria-hidden="true"
             ></div>
 
-            <div
-              class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full border border-sky-400/40 bg-sky-500/15 px-3 py-1 text-[10px] font-mono uppercase tracking-wider text-sky-200 whitespace-nowrap"
-            >
-              Virtual Voyager
+            <span class="hero-orbit-alias">Virtual Voyager</span>
+
+            <div class="hero-orbit-core">
+              <span class="hero-orbit-initials">SLY</span>
+              <span class="hero-orbit-subtitle">Cloud Navigator</span>
             </div>
-            <div
-              class="w-52 h-52 rounded-full bg-surface border-2 border-slate-700 flex items-center justify-center"
-            >
-              <span class="text-5xl font-bold text-slate-300">SY</span>
-            </div>
-            <div
-              class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-accent text-white text-xs font-medium px-3 py-1 rounded-full whitespace-nowrap"
-            >
-              🟢 Disponible
-            </div>
+
+            <span class="hero-orbit-status">
+              <span class="hero-orbit-dot" aria-hidden="true"></span>
+              Disponible
+            </span>
           </div>
         </div>
       </div>

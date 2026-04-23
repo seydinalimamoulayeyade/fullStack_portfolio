@@ -1,3 +1,4 @@
+import "../style.css";
 import "./main.js";
 import { initFeaturedProjects } from "./modules/featured-projects.js";
 import { initTypewriter } from "./modules/typewriter.js";
@@ -70,34 +71,19 @@ function initAdminAccess() {
   const input = document.getElementById("admin-access-code");
   const error = document.getElementById("admin-access-error");
 
-  if (desktopTrigger) {
-    desktopTrigger.addEventListener("click", openAdminModal);
-  }
-
-  if (mobileTrigger) {
-    mobileTrigger.addEventListener("click", openAdminModal);
-  }
-
-  if (closeBtn) {
-    closeBtn.addEventListener("click", closeAdminModal);
-  }
-
-  if (cancelBtn) {
-    cancelBtn.addEventListener("click", closeAdminModal);
-  }
+  if (desktopTrigger) desktopTrigger.addEventListener("click", openAdminModal);
+  if (mobileTrigger) mobileTrigger.addEventListener("click", openAdminModal);
+  if (closeBtn) closeBtn.addEventListener("click", closeAdminModal);
+  if (cancelBtn) cancelBtn.addEventListener("click", closeAdminModal);
 
   if (modal) {
     modal.addEventListener("click", (event) => {
-      if (event.target === modal) {
-        closeAdminModal();
-      }
+      if (event.target === modal) closeAdminModal();
     });
   }
 
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      closeAdminModal();
-    }
+    if (event.key === "Escape") closeAdminModal();
   });
 
   if (form) {
@@ -111,10 +97,7 @@ function initAdminAccess() {
         return;
       }
 
-      if (error) {
-        error.classList.remove("hidden");
-      }
-
+      if (error) error.classList.remove("hidden");
       if (input) {
         input.focus();
         input.select();

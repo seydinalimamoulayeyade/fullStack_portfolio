@@ -12,11 +12,12 @@
  * @version 2.1.0
  */
 
-import './main.js';
-import { initProjectDetail } from './modules/project-detail.js';
+import "../style.css";
+import "./main.js";
+import { initProjectDetail } from "./modules/project-detail.js";
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initProjectDetail);
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initProjectDetail);
 } else {
   initProjectDetail();
 }

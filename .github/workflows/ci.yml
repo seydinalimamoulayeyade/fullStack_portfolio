@@ -7,26 +7,20 @@ on:
     branches: ["main"]
 
 jobs:
-  validate:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Verify project structure
-        run: |
-          test -f index.html || (echo "index.html missing" && exit 1)
-          test -d js || (echo "js folder missing" && exit 1)
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
-      - name: Basic HTML validation (presence checks)
-        run: |
-          grep -q "<title>" index.html || (echo "Missing <title> tag" && exit 1)
-          grep -q "<meta" index.html || (echo "Missing meta tags" && exit 1)
+      - name: Install dependencies
+        run: npm install
 
-      - name: Check JS syntax
-        run: |
-          node -e "require('fs').readdirSync('./js').forEach(f => console.log(f))"
-
-      - name: Success message
-        run: echo "CI checks passed successfully"
+      - name: Build project
+        run: npm run build
